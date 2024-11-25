@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#P#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "tag": "minecraft:wool"
+        },
+        "P": {
+            "item": "minecraft:white_dye"
+        }
+    },
+    "result": {
+        "id": "days-gone-by:cloth_16",
+        "count": 8
+    },
+    "group": "cloth"
+}

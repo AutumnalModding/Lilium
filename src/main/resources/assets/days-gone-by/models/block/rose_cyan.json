@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "days-gone-by:block/rose_cyan"
+  }
+}

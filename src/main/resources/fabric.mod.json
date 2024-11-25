@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "days-gone-by",
+	"version": "${version}",
+	"name": "Days Gone By",
+	"description": "Blocks from the past :3",
+	"authors": [
+		"LilyflowerFDL / SpectreiCyanogen"
+	],
+	"license": "GNU-GPLv3-only",
+	"icon": "assets/days-gone-by/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"xyz.lilyflower.dgb.DaysGoneBy"
+		],
+		"client": [
+			"xyz.lilyflower.dgb.client.DGBClient"
+		],
+		"fabric-datagen": [
+			"xyz.lilyflower.dgb.datagen.DGBDatagen"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.7",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
