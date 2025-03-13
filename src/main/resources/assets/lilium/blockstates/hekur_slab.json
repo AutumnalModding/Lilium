@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/hekur_slab" }, "type=double": { "model": "lilium:block/hekur_planks" }, "type=top": { "model": "lilium:block/hekur_slab_top" } } }

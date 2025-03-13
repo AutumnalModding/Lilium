@@ -1,0 +1,1 @@
+{ "variants": { "axis=x": { "model": "lilium:block/kulist_log_horizontal", "x": 90, "y": 90 }, "axis=y": { "model": "lilium:block/kulist_log" }, "axis=z": { "model": "lilium:block/kulist_log_horizontal", "x": 90 } } }

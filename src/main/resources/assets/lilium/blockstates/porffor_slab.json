@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/porffor_slab" }, "type=double": { "model": "lilium:block/porffor_planks" }, "type=top": { "model": "lilium:block/porffor_slab_top" } } }

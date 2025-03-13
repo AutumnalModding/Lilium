@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/ewcaly_slab" }, "type=double": { "model": "lilium:block/ewcaly_planks" }, "type=top": { "model": "lilium:block/ewcaly_slab_top" } } }

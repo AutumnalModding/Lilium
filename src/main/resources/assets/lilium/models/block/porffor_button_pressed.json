@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/button_pressed", "textures": { "texture": "lilium:block/porffor_planks" } }

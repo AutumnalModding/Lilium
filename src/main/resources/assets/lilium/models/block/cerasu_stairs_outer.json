@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/outer_stairs", "textures": { "bottom": "lilium:block/cerasu_planks", "top": "lilium:block/cerasu_planks", "side": "lilium:block/cerasu_planks" } }

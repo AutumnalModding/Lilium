@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "lilium:block/PLACEHOLDER_slab"
+    },
+    "type=double": {
+      "model": "lilium:block/PLACEHOLDER_planks"
+    },
+    "type=top": {
+      "model": "lilium:block/PLACEHOLDER_slab_top"
+    }
+  }
+}

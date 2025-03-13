@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/cerasu_slab" }, "type=double": { "model": "lilium:block/cerasu_planks" }, "type=top": { "model": "lilium:block/cerasu_slab_top" } } }

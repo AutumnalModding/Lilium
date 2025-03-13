@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/slab_top", "textures": { "bottom": "lilium:block/kiparis_planks", "side": "lilium:block/kiparis_planks", "top": "lilium:block/kiparis_planks" } }

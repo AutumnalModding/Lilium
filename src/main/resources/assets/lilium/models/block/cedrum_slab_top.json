@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/slab_top", "textures": { "bottom": "lilium:block/cedrum_planks", "side": "lilium:block/cedrum_planks", "top": "lilium:block/cedrum_planks" } }

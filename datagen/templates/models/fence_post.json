@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "lilium:block/PLACEHOLDER_planks"
+  }
+}

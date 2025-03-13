@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "lilium:block/PLACEHOLDER_planks"
+  }
+}

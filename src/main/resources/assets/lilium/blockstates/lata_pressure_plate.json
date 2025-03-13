@@ -1,0 +1,1 @@
+{ "variants": { "powered=false": { "model": "lilium:block/lata_pressure_plate" }, "powered=true": { "model": "lilium:block/lata_pressure_plate_down" } } }

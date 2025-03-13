@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cube_column_horizontal", "textures": { "end": "lilium:block/tuopa_log_top", "side": "lilium:block/tuopa_log" } }

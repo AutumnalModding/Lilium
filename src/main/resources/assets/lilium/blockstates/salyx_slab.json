@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/salyx_slab" }, "type=double": { "model": "lilium:block/salyx_planks" }, "type=top": { "model": "lilium:block/salyx_slab_top" } } }

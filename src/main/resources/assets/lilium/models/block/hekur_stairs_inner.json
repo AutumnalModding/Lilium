@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/inner_stairs", "textures": { "bottom": "lilium:block/hekur_planks", "top": "lilium:block/hekur_planks", "side": "lilium:block/hekur_planks" } }

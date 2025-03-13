@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/delnas_slab" }, "type=double": { "model": "lilium:block/delnas_planks" }, "type=top": { "model": "lilium:block/delnas_slab_top" } } }

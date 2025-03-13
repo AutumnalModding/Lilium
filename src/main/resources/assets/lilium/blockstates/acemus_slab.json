@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/acemus_slab" }, "type=double": { "model": "lilium:block/acemus_planks" }, "type=top": { "model": "lilium:block/acemus_slab_top" } } }

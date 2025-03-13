@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cube_column", "textures": { "end": "lilium:block/porffor_log_top", "side": "lilium:block/porffor_log" } }

@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cube_column", "textures": { "end": "lilium:block/cerasu_log_top", "side": "lilium:block/cerasu_log" } }

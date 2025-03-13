@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "lilium:block/PLACEHOLDER_planks",
+    "side": "lilium:block/PLACEHOLDER_planks",
+    "top": "lilium:block/PLACEHOLDER_planks"
+  }
+}
