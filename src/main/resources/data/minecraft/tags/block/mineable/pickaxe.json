@@ -1,14 +1,14 @@
 {
   "values": [
-    "days-gone-by:cobblestone",
-    "days-gone-by:iron_block",
-    "days-gone-by:gold_block",
-    "days-gone-by:diamond_block",
-    "days-gone-by:glowing_obsidian",
-    "days-gone-by:nether_reactor",
-    "days-gone-by:nether_reactor_active",
-    "days-gone-by:nether_reactor_burntout",
-    "days-gone-by:gold_shiny",
-    "days-gone-by:bricks"
+    "lilium:cobblestone",
+    "lilium:iron_block",
+    "lilium:gold_block",
+    "lilium:diamond_block",
+    "lilium:glowing_obsidian",
+    "lilium:nether_reactor",
+    "lilium:nether_reactor_active",
+    "lilium:nether_reactor_burntout",
+    "lilium:gold_shiny",
+    "lilium:bricks"
   ]
 }

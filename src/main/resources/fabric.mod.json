@@ -1,24 +1,24 @@
 {
 	"schemaVersion": 1,
-	"id": "days-gone-by",
+	"id": "lilium",
 	"version": "${version}",
-	"name": "Days Gone By",
-	"description": "Blocks from the past :3",
+	"name": "Lilium",
+	"description": "Whatever I felt like adding :3",
 	"authors": [
 		"LilyflowerFDL / SpectreiCyanogen"
 	],
 	"license": "GNU-GPLv3-only",
-	"icon": "assets/days-gone-by/icon.png",
+	"icon": "assets/lilium/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"xyz.lilyflower.dgb.DaysGoneBy"
+			"xyz.lilyflower.lilium.Lilium"
 		],
 		"client": [
-			"xyz.lilyflower.dgb.client.DGBClient"
+			"xyz.lilyflower.lilium.client.LiliumClient"
 		],
 		"fabric-datagen": [
-			"xyz.lilyflower.dgb.datagen.DGBDatagen"
+			"xyz.lilyflower.lilium.datagen.LiliumDatagen"
 		]
 	},
 	"depends": {

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "lilium:block/nether_reactor_active"
+    }
+  }
+}
