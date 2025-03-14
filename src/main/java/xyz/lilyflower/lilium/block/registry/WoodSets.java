@@ -19,7 +19,28 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
 @SuppressWarnings("unused")
-public class WoodSets {
+public enum WoodSets {
+    ACEMUS("acemus", MapColor.OFF_WHITE, MapColor.OFF_WHITE),
+    CEDRUM("cedrum", MapColor.ORANGE, MapColor.TERRACOTTA_ORANGE),
+    CERASU("cerasu", MapColor.RED, MapColor.RED),
+    DELNAS("delnas", MapColor.ORANGE, MapColor.BROWN),
+    EWCALY("ewcaly", MapColor.PALE_GREEN, MapColor.OFF_WHITE),
+    HEKUR("hekur", MapColor.OFF_WHITE, MapColor.OFF_WHITE),
+    KIPARIS("kiparis", MapColor.ORANGE, MapColor.OFF_WHITE),
+    KULIST("kulist", MapColor.PALE_YELLOW, MapColor.BROWN),
+    LATA("lata", MapColor.OFF_WHITE, MapColor.ORANGE),
+    NUCIS("nucis", MapColor.BROWN, MapColor.BROWN),
+    PORFFOR("porffor", MapColor.PALE_PURPLE, MapColor.LIGHT_GRAY),
+    SALYX("salyx", MapColor.LIGHT_GRAY, MapColor.LIGHT_GRAY),
+    TUOPA("tuopa", MapColor.PALE_YELLOW, MapColor.PALE_YELLOW),
+    MARSHMALLOW("marshmallow", MapColor.WHITE, MapColor.PINK),
+    DARK_MARSHMALLOW("dark_marshmallow", MapColor.WHITE, MapColor.RED),
+    LIGHT_MARSHMALLOW("light_marshmallow", MapColor.WHITE, MapColor.PINK),
+    ;
+
+    public final List<Block> contents;
+    public final String name;
+    
     public static final ArrayList<BlockItem> WOODEN_BLOCK_ITEMS = new ArrayList<>();
     public static final HashSet<Block> LOGS = new HashSet<>();
     public static final HashSet<Block> PLANKS = new HashSet<>();
@@ -30,24 +51,7 @@ public class WoodSets {
     public static final HashSet<Block> PLATES = new HashSet<>();
     public static final HashSet<Block> BUTTONS = new HashSet<>();
 
-    public static final List<Block> ACEMUS = set("acemus", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
-    public static final List<Block> CEDRUM = set("cedrum", MapColor.ORANGE, MapColor.TERRACOTTA_ORANGE);
-    public static final List<Block> CERASU = set("cerasu", MapColor.RED, MapColor.RED);
-    public static final List<Block> DELNAS = set("delnas", MapColor.ORANGE, MapColor.BROWN);
-    public static final List<Block> EWCALY = set("ewcaly", MapColor.PALE_GREEN, MapColor.OFF_WHITE);
-    public static final List<Block> HEKUR = set("hekur", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
-    public static final List<Block> KIPARIS = set("kiparis", MapColor.ORANGE, MapColor.OFF_WHITE);
-    public static final List<Block> KULIST = set("kulist", MapColor.PALE_YELLOW, MapColor.BROWN);
-    public static final List<Block> LATA = set("lata", MapColor.OFF_WHITE, MapColor.ORANGE);
-    public static final List<Block> NUCIS = set("nucis", MapColor.BROWN, MapColor.BROWN);
-    public static final List<Block> PORFFOR = set("porffor", MapColor.PALE_PURPLE, MapColor.LIGHT_GRAY);
-    public static final List<Block> SALYX = set("salyx", MapColor.LIGHT_GRAY, MapColor.LIGHT_GRAY);
-    public static final List<Block> TUOPA = set("tuopa", MapColor.PALE_YELLOW, MapColor.PALE_YELLOW);
-    public static final List<Block> MARSHMALLOW = set("marshmallow", MapColor.WHITE, MapColor.PINK);
-    public static final List<Block> DARK_MARSHMALLOW = set("dark_marshmallow", MapColor.WHITE, MapColor.RED);
-    public static final List<Block> LIGHT_MARSHMALLOW = set("light_marshmallow", MapColor.WHITE, MapColor.PINK);
-
-    private static List<Block> set(String name, MapColor top, MapColor side) {
+    WoodSets(String name, MapColor top, MapColor side) {
         ArrayList<Block> blocks = new ArrayList<>();
 
         BlockSetType set = new BlockSetType(name);
@@ -70,14 +74,6 @@ public class WoodSets {
         blocks.add(gate);
 
         BlockRegistry.SKIP_DATAGEN.addAll(blocks);
-        LOGS.add(log);
-        PLANKS.add(planks);
-        STAIRS.add(stairs);
-        SLABS.add(slab);
-        FENCES.add(fence);
-        GATES.add(gate);
-        PLATES.add(plate);
-        BUTTONS.add(button);
 
         BlockRegistry.BLOCKS.put(name + "_log", log);
         BlockRegistry.BLOCKS.put(name + "_planks", planks);
@@ -88,33 +84,56 @@ public class WoodSets {
         BlockRegistry.BLOCKS.put(name + "_pressure_plate", plate);
         BlockRegistry.BLOCKS.put(name + "_button", button);
 
-        BlockItem logItem = new BlockItem(log, new Item.Settings());
-        BlockItem planksItem = new BlockItem(planks, new Item.Settings());
-        BlockItem stairsItem = new BlockItem(stairs, new Item.Settings());
-        BlockItem slabItem = new BlockItem(slab, new Item.Settings());
-        BlockItem fenceItem = new BlockItem(fence, new Item.Settings());
-        BlockItem gateItem = new BlockItem(gate, new Item.Settings());
-        BlockItem plateItem = new BlockItem(plate, new Item.Settings());
-        BlockItem buttonItem = new BlockItem(button, new Item.Settings());
+        this.name = name;
+        this.contents = blocks;
+    }
+    
+    static {
+        for (WoodSets set : values()) {
+            Block log = set.contents.get(0);
+            Block planks = set.contents.get(1);
+            Block stairs = set.contents.get(2);
+            Block slab = set.contents.get(3);
+            Block fence = set.contents.get(4);
+            Block gate = set.contents.get(5);
+            Block plate = set.contents.get(6);
+            Block button = set.contents.get(7);
 
-        BlockRegistry.BLOCK_ITEMS.put(name + "_log", logItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_planks", planksItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_stairs", stairsItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_slab", slabItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_fence", fenceItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_fence_gate", gateItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_pressure_plate", plateItem);
-        BlockRegistry.BLOCK_ITEMS.put(name + "_button", buttonItem);
+            LOGS.add(log);
+            PLANKS.add(planks);
+            STAIRS.add(stairs);
+            SLABS.add(slab);
+            FENCES.add(fence);
+            GATES.add(gate);
+            PLATES.add(plate);
+            BUTTONS.add(button);
+            
+            BlockItem logItem = new BlockItem(log, new Item.Settings());
+            BlockItem planksItem = new BlockItem(planks, new Item.Settings());
+            BlockItem stairsItem = new BlockItem(stairs, new Item.Settings());
+            BlockItem slabItem = new BlockItem(slab, new Item.Settings());
+            BlockItem fenceItem = new BlockItem(fence, new Item.Settings());
+            BlockItem gateItem = new BlockItem(gate, new Item.Settings());
+            BlockItem plateItem = new BlockItem(plate, new Item.Settings());
+            BlockItem buttonItem = new BlockItem(button, new Item.Settings());
 
-        WOODEN_BLOCK_ITEMS.add(logItem);
-        WOODEN_BLOCK_ITEMS.add(planksItem);
-        WOODEN_BLOCK_ITEMS.add(stairsItem);
-        WOODEN_BLOCK_ITEMS.add(slabItem);
-        WOODEN_BLOCK_ITEMS.add(fenceItem);
-        WOODEN_BLOCK_ITEMS.add(gateItem);
-        WOODEN_BLOCK_ITEMS.add(plateItem);
-        WOODEN_BLOCK_ITEMS.add(buttonItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_log", logItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_planks", planksItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_stairs", stairsItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_slab", slabItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_fence", fenceItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_fence_gate", gateItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_pressure_plate", plateItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_button", buttonItem);
 
-        return blocks;
+            WOODEN_BLOCK_ITEMS.add(logItem);
+            WOODEN_BLOCK_ITEMS.add(planksItem);
+            WOODEN_BLOCK_ITEMS.add(stairsItem);
+            WOODEN_BLOCK_ITEMS.add(slabItem);
+            WOODEN_BLOCK_ITEMS.add(fenceItem);
+            WOODEN_BLOCK_ITEMS.add(gateItem);
+            WOODEN_BLOCK_ITEMS.add(plateItem);
+            WOODEN_BLOCK_ITEMS.add(buttonItem);
+        }
     }
 }
