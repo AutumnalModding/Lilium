@@ -72,6 +72,8 @@ public enum WoodSets {
         blocks.add(slab);
         blocks.add(fence);
         blocks.add(gate);
+        blocks.add(plate);
+        blocks.add(button);
 
         BlockRegistry.SKIP_DATAGEN.addAll(blocks);
 
@@ -87,6 +89,8 @@ public enum WoodSets {
         this.name = name;
         this.contents = blocks;
     }
+
+    public static void init() {}
     
     static {
         for (WoodSets set : values()) {

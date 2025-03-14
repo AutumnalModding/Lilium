@@ -64,6 +64,9 @@ public class BlockRegistry {
     }
 
     static {
+        for (WoodSets value : WoodSets.values()) {
+            value.contents.getFirst(); // Do nothing. We just want to initialize it.
+        }
         new ClothBlocks();
         new GenericBlocks();
     }

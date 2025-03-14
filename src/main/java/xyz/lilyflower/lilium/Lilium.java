@@ -36,7 +36,7 @@ public class Lilium implements ModInitializer {
 
 	public static final RegistryKey<ItemGroup> IGK_LILIUM_DENDROLOGY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology"));
 	public static final ItemGroup ITEMGROUP_LILIUM_DENDROLOGY = FabricItemGroup.builder()
-			.icon(() -> new ItemStack(WoodSets.DARK_MARSHMALLOW.contents.get(1)))
+			.icon(() -> new ItemStack(WoodSets.DARK_MARSHMALLOW.contents.getFirst()))
 			.displayName(Text.translatable("itemGroup.lilium.dendrology"))
 			.entries((displayContext, entries) -> {
 				for (BlockItem item : WoodSets.WOODEN_BLOCK_ITEMS) {
