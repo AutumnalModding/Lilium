@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.block.registry;
+package xyz.lilyflower.lilium.block;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,6 +17,7 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 @SuppressWarnings("unused")
 public enum WoodSets {

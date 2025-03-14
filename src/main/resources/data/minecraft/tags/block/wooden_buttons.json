@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:tuopa_button",
-    "lilium:acemus_button",
-    "lilium:cedrum_button",
-    "lilium:salyx_button",
-    "lilium:hekur_button",
-    "lilium:porffor_button",
-    "lilium:delnas_button",
     "lilium:light_marshmallow_button",
-    "lilium:kiparis_button",
-    "lilium:marshmallow_button",
+    "lilium:porffor_button",
+    "lilium:salyx_button",
+    "lilium:ewcaly_button",
     "lilium:kulist_button",
     "lilium:lata_button",
-    "lilium:dark_marshmallow_button",
-    "lilium:ewcaly_button",
     "lilium:nucis_button",
-    "lilium:cerasu_button"
+    "lilium:marshmallow_button",
+    "lilium:delnas_button",
+    "lilium:acemus_button",
+    "lilium:cerasu_button",
+    "lilium:hekur_button",
+    "lilium:tuopa_button",
+    "lilium:kiparis_button",
+    "lilium:dark_marshmallow_button",
+    "lilium:cedrum_button"
   ]
 }

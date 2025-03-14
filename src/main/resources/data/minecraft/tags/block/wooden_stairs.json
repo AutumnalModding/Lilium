@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:porffor_stairs",
-    "lilium:tuopa_stairs",
-    "lilium:lata_stairs",
-    "lilium:acemus_stairs",
-    "lilium:kulist_stairs",
-    "lilium:ewcaly_stairs",
-    "lilium:nucis_stairs",
-    "lilium:hekur_stairs",
-    "lilium:kiparis_stairs",
     "lilium:dark_marshmallow_stairs",
-    "lilium:delnas_stairs",
-    "lilium:marshmallow_stairs",
-    "lilium:light_marshmallow_stairs",
-    "lilium:cedrum_stairs",
     "lilium:cerasu_stairs",
-    "lilium:salyx_stairs"
+    "lilium:hekur_stairs",
+    "lilium:lata_stairs",
+    "lilium:marshmallow_stairs",
+    "lilium:kulist_stairs",
+    "lilium:kiparis_stairs",
+    "lilium:ewcaly_stairs",
+    "lilium:porffor_stairs",
+    "lilium:salyx_stairs",
+    "lilium:cedrum_stairs",
+    "lilium:acemus_stairs",
+    "lilium:delnas_stairs",
+    "lilium:tuopa_stairs",
+    "lilium:light_marshmallow_stairs",
+    "lilium:nucis_stairs"
   ]
 }

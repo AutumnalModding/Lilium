@@ -11,9 +11,9 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.registry.GenericBlocks;
-import xyz.lilyflower.lilium.block.registry.WoodSets;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
+import xyz.lilyflower.lilium.block.GenericBlocks;
+import xyz.lilyflower.lilium.block.WoodSets;
 
 public class LiliumTagProvider {
     public static class Blocks extends FabricTagProvider.BlockTagProvider {
@@ -48,7 +48,7 @@ public class LiliumTagProvider {
                     .add(GenericBlocks.GOLD_SHINY)
                     .add(GenericBlocks.OLD_BRICK);
 
-            FabricTagBuilder builder = getOrCreateTagBuilder(BlockTags.AXE_MINEABLE);
+            FabricTagBuilder builder = getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(GenericBlocks.SUPPLY_CRATE);
             for (BlockItem item : WoodSets.WOODEN_BLOCK_ITEMS) {
                 builder.add(item.getBlock());
             }

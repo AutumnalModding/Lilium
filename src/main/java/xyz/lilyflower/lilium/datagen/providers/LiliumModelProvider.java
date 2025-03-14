@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 public class LiliumModelProvider extends FabricModelProvider {
     public LiliumModelProvider(FabricDataOutput output) {

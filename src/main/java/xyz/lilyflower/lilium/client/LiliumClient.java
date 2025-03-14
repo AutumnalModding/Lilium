@@ -4,8 +4,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.registry.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
+import xyz.lilyflower.lilium.block.GenericBlocks;
 
 public class LiliumClient implements ClientModInitializer {
     @Override

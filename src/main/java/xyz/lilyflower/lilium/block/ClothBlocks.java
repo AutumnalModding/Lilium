@@ -1,8 +1,9 @@
-package xyz.lilyflower.lilium.block.registry;
+package xyz.lilyflower.lilium.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 @SuppressWarnings("unused")
 public class ClothBlocks {

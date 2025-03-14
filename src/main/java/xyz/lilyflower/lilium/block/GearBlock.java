@@ -11,7 +11,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
-import xyz.lilyflower.lilium.block.registry.GenericBlocks;
 
 public class GearBlock extends Block {
     public static final BooleanProperty BREAKING = BooleanProperty.of("breaking");

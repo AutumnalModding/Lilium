@@ -13,11 +13,12 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.registry.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
+import xyz.lilyflower.lilium.block.GenericBlocks;
 
 import org.apache.logging.log4j.Logger;
-import xyz.lilyflower.lilium.block.registry.WoodSets;
+import xyz.lilyflower.lilium.block.WoodSets;
+import xyz.lilyflower.lilium.util.registry.ItemRegistry;
 
 public class Lilium implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Lilium");
@@ -32,6 +33,10 @@ public class Lilium implements ModInitializer {
 					if (!WoodSets.WOODEN_BLOCK_ITEMS.contains(item)) {
 						entries.add(item);
 					}
+				});
+
+				ItemRegistry.ITEMS.forEach((name, item) -> {
+					entries.add(item);
 				});
 			})
 			.build();
@@ -49,6 +54,7 @@ public class Lilium implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		BlockRegistry.init();
+		ItemRegistry.init();
 
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_generic")), ITEMGROUP_LILIUM_GENERIC);
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology")), ITEMGROUP_LILIUM_DENDROLOGY);

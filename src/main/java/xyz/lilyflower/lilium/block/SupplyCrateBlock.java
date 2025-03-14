@@ -22,8 +22,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import xyz.lilyflower.lilium.Lilium;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.registry.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 public class SupplyCrateBlock extends Block {
     public static final DirectionProperty FACING;
@@ -67,7 +66,7 @@ public class SupplyCrateBlock extends Block {
         int selector = random.nextBetween(0, 100);
 
         CrateType type = CrateType.NOTHING;
-        if (selector >= 1 && selector <= 9) type = CrateType.RESOURCE;
+        if (selector == 0) type = CrateType.RESOURCE;
         if (selector >= 10 && selector <= 20) type = CrateType.ENGINEER;
         if (selector >= 21 && selector <= 51) type = CrateType.PRESERVATION;
         if (selector >= 52 && selector <= 92) type = CrateType.BUILDER;

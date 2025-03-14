@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.registry.RegistryWrapper;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 public class LiliumLootProvider extends FabricBlockLootTableProvider {
 

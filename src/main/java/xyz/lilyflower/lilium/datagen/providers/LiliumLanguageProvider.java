@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
 import org.apache.commons.lang3.text.WordUtils;
-import xyz.lilyflower.lilium.block.registry.BlockRegistry;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 public class LiliumLanguageProvider extends FabricLanguageProvider {
     public LiliumLanguageProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> lookup) {

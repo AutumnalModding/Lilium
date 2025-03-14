@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.block.registry;
+package xyz.lilyflower.lilium.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -7,12 +7,10 @@ import net.minecraft.block.ColoredFallingBlock;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.ColorCode;
-import xyz.lilyflower.lilium.block.GearBlock;
-import xyz.lilyflower.lilium.block.SupplyCrateBlock;
+import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 @SuppressWarnings("unused")
 public class GenericBlocks {
-
     public static final Block OLD_GRASS = BlockRegistry.create("grass", new Block(AbstractBlock.Settings.copy(Blocks.GRASS_BLOCK)));
     public static final Block OLD_COBBLESTONE = BlockRegistry.create("cobblestone", new Block(AbstractBlock.Settings.copy(Blocks.COBBLESTONE)));
     public static final Block OLD_BRICK = BlockRegistry.create("bricks", new Block(AbstractBlock.Settings.copy(Blocks.BRICKS)));
