@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:nucis_planks",
-    "lilium:porffor_planks",
-    "lilium:acemus_planks",
-    "lilium:kulist_planks",
-    "lilium:marshmallow_planks",
-    "lilium:dark_marshmallow_planks",
-    "lilium:ewcaly_planks",
-    "lilium:tuopa_planks",
-    "lilium:salyx_planks",
     "lilium:cedrum_planks",
     "lilium:delnas_planks",
-    "lilium:hekur_planks",
-    "lilium:cerasu_planks",
-    "lilium:kiparis_planks",
+    "lilium:nucis_planks",
+    "lilium:light_marshmallow_planks",
+    "lilium:ewcaly_planks",
+    "lilium:salyx_planks",
+    "lilium:tuopa_planks",
+    "lilium:dark_marshmallow_planks",
     "lilium:lata_planks",
-    "lilium:light_marshmallow_planks"
+    "lilium:porffor_planks",
+    "lilium:cerasu_planks",
+    "lilium:marshmallow_planks",
+    "lilium:acemus_planks",
+    "lilium:hekur_planks",
+    "lilium:kulist_planks",
+    "lilium:kiparis_planks"
   ]
 }

@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cross", "textures": { "cross": "lilium:block/dark_marshmallow_sapling" } }

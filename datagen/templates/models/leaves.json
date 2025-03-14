@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "lilium:block/PLACEHOLDER_leaves"
+  }
+}

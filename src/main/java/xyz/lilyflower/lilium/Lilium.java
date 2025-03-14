@@ -14,10 +14,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
 
 import org.apache.logging.log4j.Logger;
-import xyz.lilyflower.lilium.block.WoodSets;
+import xyz.lilyflower.lilium.util.registry.block.WoodSets;
 import xyz.lilyflower.lilium.util.registry.ItemRegistry;
 
 public class Lilium implements ModInitializer {

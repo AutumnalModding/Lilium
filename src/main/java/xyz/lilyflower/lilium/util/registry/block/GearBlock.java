@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.block;
+package xyz.lilyflower.lilium.util.registry.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;

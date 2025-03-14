@@ -23,6 +23,8 @@ import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
 import xyz.lilyflower.lilium.Lilium;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
+import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.block.WoodSets;
 
 public class SupplyCrateBlock extends Block {
     public static final DirectionProperty FACING;
@@ -77,10 +79,10 @@ public class SupplyCrateBlock extends Block {
         switch (type) {
             case NOTHING -> {} // NOP
             case ENGINEER -> {
-                drops.put(GenericBlocks.OLD_SAND.asItem(), 23);
-                drops.put(GenericBlocks.OLD_GRAVEL.asItem(), 23);
-                drops.put(GenericBlocks.GEAR_PRIMARY.asItem(), 32);
-                drops.put(GenericBlocks.GEAR_SECONDARY.asItem(), 32);
+                drops.put(GenericBlocks.OLD_SAND.asItem(), 20);
+                drops.put(GenericBlocks.OLD_GRAVEL.asItem(), 20);
+                drops.put(GenericBlocks.GEAR_PRIMARY.asItem(), 16);
+                drops.put(GenericBlocks.GEAR_SECONDARY.asItem(), 16);
             }
 
             case RESOURCE -> {
@@ -132,14 +134,15 @@ public class SupplyCrateBlock extends Block {
                 int roses = random.nextBetween(1, 5);
                 int cyans = random.nextBetween(0, 3);
                 int paeonias = random.nextBetween(0, 2);
-                // TODO: saplings
-                // int saplings = random.nextBetween(0, 6);
+                Item sapling = WoodSets.values()[random.nextBetween(0, 12)].contents.get(8).asItem();
+                int saplings = random.nextBetween(0, 6);
                 int grass = random.nextBetween(1, 8);
 
                 drops.put(GenericBlocks.ROSE.asItem(), roses);
                 drops.put(GenericBlocks.CYAN_ROSE.asItem(), cyans);
                 drops.put(GenericBlocks.PAEONIA.asItem(), paeonias);
                 drops.put(GenericBlocks.OLD_GRASS.asItem(), grass);
+                drops.put(sapling, saplings);
             }
         }
 

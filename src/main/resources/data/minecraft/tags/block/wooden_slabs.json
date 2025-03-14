@@ -1,20 +1,20 @@
 {
   "values": [
     "lilium:kulist_slab",
-    "lilium:nucis_slab",
     "lilium:ewcaly_slab",
     "lilium:kiparis_slab",
-    "lilium:tuopa_slab",
-    "lilium:marshmallow_slab",
+    "lilium:acemus_slab",
+    "lilium:porffor_slab",
     "lilium:lata_slab",
     "lilium:salyx_slab",
-    "lilium:light_marshmallow_slab",
+    "lilium:nucis_slab",
+    "lilium:marshmallow_slab",
     "lilium:delnas_slab",
-    "lilium:acemus_slab",
-    "lilium:hekur_slab",
-    "lilium:porffor_slab",
     "lilium:cedrum_slab",
     "lilium:cerasu_slab",
-    "lilium:dark_marshmallow_slab"
+    "lilium:hekur_slab",
+    "lilium:tuopa_slab",
+    "lilium:dark_marshmallow_slab",
+    "lilium:light_marshmallow_slab"
   ]
 }

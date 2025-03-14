@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/leaves", "textures": { "all": "lilium:block/kiparis_leaves" } }

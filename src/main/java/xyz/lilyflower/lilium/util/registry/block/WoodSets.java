@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.block;
+package xyz.lilyflower.lilium.util.registry.block;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.ButtonBlock;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.FenceGateBlock;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.block.SlabBlock;
@@ -17,9 +18,11 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import xyz.lilyflower.lilium.block.LiliumSaplingBlock;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 @SuppressWarnings("unused")
+// TODO colormaps for: Acemus, Cerasu, and Kulist leaves
 public enum WoodSets {
     ACEMUS("acemus", MapColor.OFF_WHITE, MapColor.OFF_WHITE),
     CEDRUM("cedrum", MapColor.ORANGE, MapColor.TERRACOTTA_ORANGE),
@@ -43,6 +46,7 @@ public enum WoodSets {
     public final String name;
     
     public static final ArrayList<BlockItem> WOODEN_BLOCK_ITEMS = new ArrayList<>();
+
     public static final HashSet<Block> LOGS = new HashSet<>();
     public static final HashSet<Block> PLANKS = new HashSet<>();
     public static final HashSet<Block> STAIRS = new HashSet<>();
@@ -51,6 +55,8 @@ public enum WoodSets {
     public static final HashSet<Block> GATES = new HashSet<>();
     public static final HashSet<Block> PLATES = new HashSet<>();
     public static final HashSet<Block> BUTTONS = new HashSet<>();
+    public static final HashSet<Block> SAPLINGS = new HashSet<>();
+    public static final HashSet<Block> LEAVES = new HashSet<>();
 
     WoodSets(String name, MapColor top, MapColor side) {
         ArrayList<Block> blocks = new ArrayList<>();
@@ -66,6 +72,8 @@ public enum WoodSets {
         Block gate = new FenceGateBlock(type, AbstractBlock.Settings.copy(Blocks.OAK_FENCE_GATE).mapColor(side));
         Block plate = new PressurePlateBlock(set, AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE).mapColor(side));
         Block button = new ButtonBlock(set, 30, AbstractBlock.Settings.copy(Blocks.OAK_BUTTON).mapColor(side));
+        Block sapling = new LiliumSaplingBlock(null, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING));
+        Block leaves = new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES).mapColor(side));
 
         blocks.add(log);
         blocks.add(planks);
@@ -75,6 +83,8 @@ public enum WoodSets {
         blocks.add(gate);
         blocks.add(plate);
         blocks.add(button);
+        blocks.add(sapling);
+        blocks.add(leaves);
 
         BlockRegistry.SKIP_DATAGEN.addAll(blocks);
 
@@ -86,12 +96,12 @@ public enum WoodSets {
         BlockRegistry.BLOCKS.put(name + "_fence_gate", gate);
         BlockRegistry.BLOCKS.put(name + "_pressure_plate", plate);
         BlockRegistry.BLOCKS.put(name + "_button", button);
+        BlockRegistry.BLOCKS.put(name + "_sapling", sapling);
+        BlockRegistry.BLOCKS.put(name + "_leaves", leaves);
 
         this.name = name;
         this.contents = blocks;
     }
-
-    public static void init() {}
     
     static {
         for (WoodSets set : values()) {
@@ -103,6 +113,8 @@ public enum WoodSets {
             Block gate = set.contents.get(5);
             Block plate = set.contents.get(6);
             Block button = set.contents.get(7);
+            Block sapling = set.contents.get(8);
+            Block leaves = set.contents.get(9);
 
             LOGS.add(log);
             PLANKS.add(planks);
@@ -112,6 +124,8 @@ public enum WoodSets {
             GATES.add(gate);
             PLATES.add(plate);
             BUTTONS.add(button);
+            SAPLINGS.add(sapling);
+            LEAVES.add(leaves);
             
             BlockItem logItem = new BlockItem(log, new Item.Settings());
             BlockItem planksItem = new BlockItem(planks, new Item.Settings());
@@ -121,6 +135,8 @@ public enum WoodSets {
             BlockItem gateItem = new BlockItem(gate, new Item.Settings());
             BlockItem plateItem = new BlockItem(plate, new Item.Settings());
             BlockItem buttonItem = new BlockItem(button, new Item.Settings());
+            BlockItem saplingItem = new BlockItem(sapling, new Item.Settings());
+            BlockItem leavesItem = new BlockItem(leaves, new Item.Settings());
 
             BlockRegistry.BLOCK_ITEMS.put(set.name + "_log", logItem);
             BlockRegistry.BLOCK_ITEMS.put(set.name + "_planks", planksItem);
@@ -130,6 +146,8 @@ public enum WoodSets {
             BlockRegistry.BLOCK_ITEMS.put(set.name + "_fence_gate", gateItem);
             BlockRegistry.BLOCK_ITEMS.put(set.name + "_pressure_plate", plateItem);
             BlockRegistry.BLOCK_ITEMS.put(set.name + "_button", buttonItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_sapling", saplingItem);
+            BlockRegistry.BLOCK_ITEMS.put(set.name + "_leaves", leavesItem);
 
             WOODEN_BLOCK_ITEMS.add(logItem);
             WOODEN_BLOCK_ITEMS.add(planksItem);
@@ -139,6 +157,8 @@ public enum WoodSets {
             WOODEN_BLOCK_ITEMS.add(gateItem);
             WOODEN_BLOCK_ITEMS.add(plateItem);
             WOODEN_BLOCK_ITEMS.add(buttonItem);
+            WOODEN_BLOCK_ITEMS.add(saplingItem);
+            WOODEN_BLOCK_ITEMS.add(leavesItem);
         }
     }
 }

@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.block;
+package xyz.lilyflower.lilium.util.registry.block;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -7,6 +7,7 @@ import net.minecraft.block.ColoredFallingBlock;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.ColorCode;
+import xyz.lilyflower.lilium.block.SupplyCrateBlock;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 
 @SuppressWarnings("unused")

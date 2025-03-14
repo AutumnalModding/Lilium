@@ -12,8 +12,8 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
-import xyz.lilyflower.lilium.block.GenericBlocks;
-import xyz.lilyflower.lilium.block.WoodSets;
+import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.block.WoodSets;
 
 public class LiliumTagProvider {
     public static class Blocks extends FabricTagProvider.BlockTagProvider {
@@ -70,6 +70,8 @@ public class LiliumTagProvider {
             getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(WoodSets.GATES.toArray(Block[]::new));
             getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(WoodSets.PLATES.toArray(Block[]::new));
             getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(WoodSets.BUTTONS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.SAPLINGS).add(WoodSets.SAPLINGS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.LEAVES).add(WoodSets.LEAVES.toArray(Block[]::new));
         }
     }
 }

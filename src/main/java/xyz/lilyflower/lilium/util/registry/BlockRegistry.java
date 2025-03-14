@@ -11,9 +11,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import xyz.lilyflower.lilium.Lilium;
-import xyz.lilyflower.lilium.block.ClothBlocks;
-import xyz.lilyflower.lilium.block.GenericBlocks;
-import xyz.lilyflower.lilium.block.WoodSets;
+import xyz.lilyflower.lilium.util.registry.block.ClothBlocks;
+import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
+import xyz.lilyflower.lilium.util.registry.block.WoodSets;
 
 @SuppressWarnings("InstantiationOfUtilityClass")
 public class BlockRegistry {

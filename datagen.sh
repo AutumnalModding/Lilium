@@ -13,6 +13,8 @@ for file in $(ls datagen/templates/blockstates/*.json); do
 
     if [ $filename = "$1_fence.json" -o $filename = "$1_button.json" ]; then
         echo '{ "parent": "lilium:block/PLACEHOLDER_inventory" }' | sed s/PLACEHOLDER/$(basename $filename .json)/ > src/main/resources/assets/lilium/models/item/$filename
+    elif [ $filename = "$1_sapling.json" ]; then
+        echo '{ "parent": "minecraft:item/generated", "textures": { "layer0": "lilium:block/PLACEHOLDER" } }' | sed s/PLACEHOLDER/$(basename $filename .json)/ > src/main/resources/assets/lilium/models/item/$filename
     else
         echo '{ "parent": "lilium:block/PLACEHOLDER" }' | sed s/PLACEHOLDER/$(basename $filename .json)/ > src/main/resources/assets/lilium/models/item/$filename
     fi
