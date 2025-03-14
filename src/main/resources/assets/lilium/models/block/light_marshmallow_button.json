@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/button", "textures": { "texture": "lilium:block/light_marshmallow_planks" } }

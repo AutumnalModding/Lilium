@@ -1,7 +1,6 @@
 package xyz.lilyflower.lilium.block.registry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import net.minecraft.block.Block;
@@ -66,7 +65,7 @@ public class BlockRegistry {
 
     static {
         new ClothBlocks();
-        new WoodBlocks();
+        new WoodSets();
         new GenericBlocks();
     }
 }

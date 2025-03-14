@@ -1,0 +1,1 @@
+{ "variants": { "type=bottom": { "model": "lilium:block/light_marshmallow_slab" }, "type=double": { "model": "lilium:block/light_marshmallow_planks" }, "type=top": { "model": "lilium:block/light_marshmallow_slab_top" } } }

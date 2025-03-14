@@ -19,7 +19,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
 @SuppressWarnings("unused")
-public class WoodBlocks {
+public class WoodSets {
     public static final ArrayList<BlockItem> WOODEN_BLOCK_ITEMS = new ArrayList<>();
     public static final HashSet<Block> LOGS = new HashSet<>();
     public static final HashSet<Block> PLANKS = new HashSet<>();
@@ -30,19 +30,22 @@ public class WoodBlocks {
     public static final HashSet<Block> PLATES = new HashSet<>();
     public static final HashSet<Block> BUTTONS = new HashSet<>();
 
-    public static final List<Block> LOG_ACEMUS = set("acemus", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
-    public static final List<Block> LOG_CEDRUM = set("cedrum", MapColor.ORANGE, MapColor.TERRACOTTA_ORANGE);
-    public static final List<Block> LOG_CERASU = set("cerasu", MapColor.RED, MapColor.RED);
-    public static final List<Block> LOG_DELNAS = set("delnas", MapColor.ORANGE, MapColor.BROWN);
-    public static final List<Block> LOG_EWCALY = set("ewcaly", MapColor.PALE_GREEN, MapColor.OFF_WHITE);
-    public static final List<Block> LOG_HEKUR = set("hekur", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
-    public static final List<Block> LOG_KIPARIS = set("kiparis", MapColor.ORANGE, MapColor.OFF_WHITE);
-    public static final List<Block> LOG_KULIST = set("kulist", MapColor.PALE_YELLOW, MapColor.BROWN);
-    public static final List<Block> LOG_LATA = set("lata", MapColor.OFF_WHITE, MapColor.ORANGE);
-    public static final List<Block> LOG_NUCIS = set("nucis", MapColor.BROWN, MapColor.BROWN);
-    public static final List<Block> LOG_PORFFOR = set("porffor", MapColor.PALE_PURPLE, MapColor.LIGHT_GRAY);
-    public static final List<Block> LOG_SALYX = set("salyx", MapColor.LIGHT_GRAY, MapColor.LIGHT_GRAY);
-    public static final List<Block> LOG_TUOPA = set("tuopa", MapColor.PALE_YELLOW, MapColor.PALE_YELLOW);
+    public static final List<Block> ACEMUS = set("acemus", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
+    public static final List<Block> CEDRUM = set("cedrum", MapColor.ORANGE, MapColor.TERRACOTTA_ORANGE);
+    public static final List<Block> CERASU = set("cerasu", MapColor.RED, MapColor.RED);
+    public static final List<Block> DELNAS = set("delnas", MapColor.ORANGE, MapColor.BROWN);
+    public static final List<Block> EWCALY = set("ewcaly", MapColor.PALE_GREEN, MapColor.OFF_WHITE);
+    public static final List<Block> HEKUR = set("hekur", MapColor.OFF_WHITE, MapColor.OFF_WHITE);
+    public static final List<Block> KIPARIS = set("kiparis", MapColor.ORANGE, MapColor.OFF_WHITE);
+    public static final List<Block> KULIST = set("kulist", MapColor.PALE_YELLOW, MapColor.BROWN);
+    public static final List<Block> LATA = set("lata", MapColor.OFF_WHITE, MapColor.ORANGE);
+    public static final List<Block> NUCIS = set("nucis", MapColor.BROWN, MapColor.BROWN);
+    public static final List<Block> PORFFOR = set("porffor", MapColor.PALE_PURPLE, MapColor.LIGHT_GRAY);
+    public static final List<Block> SALYX = set("salyx", MapColor.LIGHT_GRAY, MapColor.LIGHT_GRAY);
+    public static final List<Block> TUOPA = set("tuopa", MapColor.PALE_YELLOW, MapColor.PALE_YELLOW);
+    public static final List<Block> MARSHMALLOW = set("marshmallow", MapColor.WHITE, MapColor.PINK);
+    public static final List<Block> DARK_MARSHMALLOW = set("dark_marshmallow", MapColor.WHITE, MapColor.RED);
+    public static final List<Block> LIGHT_MARSHMALLOW = set("light_marshmallow", MapColor.WHITE, MapColor.PINK);
 
     private static List<Block> set(String name, MapColor top, MapColor side) {
         ArrayList<Block> blocks = new ArrayList<>();
@@ -52,7 +55,7 @@ public class WoodBlocks {
 
         Block log = Blocks.createLogBlock(top, side);
         Block planks = new Block(AbstractBlock.Settings.copy(Blocks.OAK_PLANKS).mapColor(side));
-        Block stairs = new StairsBlock(planks.getDefaultState(), AbstractBlock.Settings.copy(planks));
+        Block stairs = new StairsBlock(planks.getDefaultState(), AbstractBlock.Settings.copy(Blocks.OAK_STAIRS).mapColor(side));
         Block slab = new SlabBlock(AbstractBlock.Settings.copy(Blocks.OAK_SLAB).mapColor(side));
         Block fence = new FenceBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE).mapColor(side));
         Block gate = new FenceGateBlock(type, AbstractBlock.Settings.copy(Blocks.OAK_FENCE_GATE).mapColor(side));

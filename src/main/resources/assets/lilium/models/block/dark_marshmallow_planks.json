@@ -1,0 +1,1 @@
+{ "parent": "minecraft:block/cube_all", "textures": { "all": "lilium:block/dark_marshmallow_planks" } }

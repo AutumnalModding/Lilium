@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -12,7 +13,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import xyz.lilyflower.lilium.block.registry.BlockRegistry;
 import xyz.lilyflower.lilium.block.registry.GenericBlocks;
-import xyz.lilyflower.lilium.block.registry.WoodBlocks;
+import xyz.lilyflower.lilium.block.registry.WoodSets;
 
 public class LiliumTagProvider {
     public static class Blocks extends FabricTagProvider.BlockTagProvider {
@@ -48,29 +49,8 @@ public class LiliumTagProvider {
                     .add(GenericBlocks.OLD_BRICK);
 
             FabricTagBuilder builder = getOrCreateTagBuilder(BlockTags.AXE_MINEABLE);
-            for (Block log : WoodBlocks.LOGS) {
-                builder.add(log);
-            }
-            for (Block plank : WoodBlocks.PLANKS) {
-                builder.add(plank);
-            }
-            for (Block stair : WoodBlocks.STAIRS) {
-                builder.add(stair);
-            }
-            for (Block slab : WoodBlocks.SLABS) {
-                builder.add(slab);
-            }
-            for (Block fence : WoodBlocks.FENCES) {
-                builder.add(fence);
-            }
-            for (Block gate : WoodBlocks.GATES) {
-                builder.add(gate);
-            }
-            for (Block plate : WoodBlocks.PLATES) {
-                builder.add(plate);
-            }
-            for (Block button : WoodBlocks.BUTTONS) {
-                builder.add(button);
+            for (BlockItem item : WoodSets.WOODEN_BLOCK_ITEMS) {
+                builder.add(item.getBlock());
             }
 
             FabricTagProvider<Block>.FabricTagBuilder flowers = getOrCreateTagBuilder(BlockTags.FLOWERS);
@@ -80,50 +60,16 @@ public class LiliumTagProvider {
                 }
             }
 
-            FabricTagProvider<Block>.FabricTagBuilder wool = getOrCreateTagBuilder(BlockTags.WOOL);
-            for (Block cloth : BlockRegistry.CLOTH_BLOCKS) {
-                wool.add(cloth);
-            }
+            getOrCreateTagBuilder(BlockTags.WOOL).add(BlockRegistry.CLOTH_BLOCKS.toArray(Block[]::new));
 
-            FabricTagProvider<Block>.FabricTagBuilder logs = getOrCreateTagBuilder(BlockTags.LOGS);
-            for (Block log : WoodBlocks.LOGS) {
-                logs.add(log);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder planks = getOrCreateTagBuilder(BlockTags.PLANKS);
-            for (Block plank : WoodBlocks.PLANKS) {
-                planks.add(plank);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder stairs = getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS);
-            for (Block stair : WoodBlocks.STAIRS) {
-                stairs.add(stair);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder slabs = getOrCreateTagBuilder(BlockTags.WOODEN_SLABS);
-            for (Block slab : WoodBlocks.SLABS) {
-                slabs.add(slab);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder fences = getOrCreateTagBuilder(BlockTags.WOODEN_FENCES);
-            for (Block fence : WoodBlocks.FENCES) {
-                fences.add(fence);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder gates = getOrCreateTagBuilder(BlockTags.FENCE_GATES);
-            for (Block gate : WoodBlocks.GATES) {
-                gates.add(gate);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder plates = getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES);
-            for (Block plate : WoodBlocks.PLATES) {
-                plates.add(plate);
-            }
-
-            FabricTagProvider<Block>.FabricTagBuilder buttons = getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS);
-            for (Block button : WoodBlocks.BUTTONS) {
-                buttons.add(button);
-            }
+            getOrCreateTagBuilder(BlockTags.LOGS).add(WoodSets.LOGS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.PLANKS).add(WoodSets.PLANKS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(WoodSets.STAIRS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(WoodSets.SLABS.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.WOODEN_FENCES).add(WoodSets.FENCES.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.FENCE_GATES).add(WoodSets.GATES.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES).add(WoodSets.PLATES.toArray(Block[]::new));
+            getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(WoodSets.BUTTONS.toArray(Block[]::new));
         }
     }
 }

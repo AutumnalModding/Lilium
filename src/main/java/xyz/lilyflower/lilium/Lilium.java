@@ -3,7 +3,6 @@ package xyz.lilyflower.lilium;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ import xyz.lilyflower.lilium.block.registry.BlockRegistry;
 import xyz.lilyflower.lilium.block.registry.GenericBlocks;
 
 import org.apache.logging.log4j.Logger;
-import xyz.lilyflower.lilium.block.registry.WoodBlocks;
+import xyz.lilyflower.lilium.block.registry.WoodSets;
 
 public class Lilium implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Lilium");
@@ -28,7 +27,7 @@ public class Lilium implements ModInitializer {
 			.displayName(Text.translatable("itemGroup.lilium.generic"))
 			.entries((displayContext, entries) -> {
 				BlockRegistry.BLOCK_ITEMS.forEach((name, item) -> {
-					if (!WoodBlocks.WOODEN_BLOCK_ITEMS.contains(item)) {
+					if (!WoodSets.WOODEN_BLOCK_ITEMS.contains(item)) {
 						entries.add(item);
 					}
 				});
@@ -37,10 +36,10 @@ public class Lilium implements ModInitializer {
 
 	public static final RegistryKey<ItemGroup> IGK_LILIUM_DENDROLOGY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology"));
 	public static final ItemGroup ITEMGROUP_LILIUM_DENDROLOGY = FabricItemGroup.builder()
-			.icon(() -> new ItemStack(WoodBlocks.LOG_ACEMUS.get(1)))
+			.icon(() -> new ItemStack(WoodSets.ACEMUS.get(1)))
 			.displayName(Text.translatable("itemGroup.lilium.dendrology"))
 			.entries((displayContext, entries) -> {
-				for (BlockItem item : WoodBlocks.WOODEN_BLOCK_ITEMS) {
+				for (BlockItem item : WoodSets.WOODEN_BLOCK_ITEMS) {
 					entries.add(item);
 				}
 			})
