@@ -18,7 +18,7 @@ public class BlockRegistry {
     public static final LinkedHashMap<String, BlockItem> BLOCK_ITEMS = new LinkedHashMap<>();
 
     public static final HashSet<Block> FLOWERS = new HashSet<>();
-    public static final HashSet<Block> CLOTH_BLOCKS = new HashSet<>();
+    public static final ArrayList<Block> CLOTH_BLOCKS = new ArrayList<>();
     public static final ArrayList<Block> SKIP_DATAGEN = new ArrayList<>();
 
     static Block create(String name, Block block) {
@@ -51,7 +51,7 @@ public class BlockRegistry {
         return block;
     }
 
-        public static void init() {
+    public static void init() {
         System.out.println("Registering blocks");
         BLOCKS.forEach((name, block) -> {
             Lilium.LOGGER.debug("Registering block '{}'.", name);

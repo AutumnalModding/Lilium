@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "lilium:block/chest_front",
+    "side": "lilium:block/chest_side",
+    "top": "lilium:block/chest",
+    "bottom": "lilium:block/chest"
+  }
+}

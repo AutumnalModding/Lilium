@@ -12,7 +12,6 @@
   "block.lilium.gear_secondary": "Gear (Secondary)",
   "block.lilium.gold_shiny": "Shiny Gold Block",
 
-
   "block.lilium.update": "Update Block",
   "block.lilium.glowing_obsidian": "Glowing Obsidian",
   "block.lilium.nether_reactor": "Nether Reactor Core",
@@ -25,6 +24,8 @@
   "block.lilium.potted_rose": "Potted Rose",
   "block.lilium.potted_rose_cyan": "Potted Cyan Rose",
   "block.lilium.potted_paeonia": "Potted Paeonia",
+
+  "block.lilium.chest_locked_aprilfools_super_old_legacy_we_should_not_even_have_this": "Steve Co. Supply Crate",
 
   "block.lilium.cloth_crimson": "Crimson Cloth",
   "block.lilium.cloth_amber": "Amber Cloth",

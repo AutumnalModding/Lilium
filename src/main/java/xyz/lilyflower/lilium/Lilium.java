@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +22,8 @@ import xyz.lilyflower.lilium.block.registry.WoodSets;
 public class Lilium implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Lilium");
 
-	public static final RegistryKey<ItemGroup> IGK_LILIUM_GENERIC = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_generic"));
+	public static final SoundEvent CRATE_OPEN = SoundEvent.of(Identifier.of("lilium", "crate_open"));
+
 	public static final ItemGroup ITEMGROUP_LILIUM_GENERIC = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(GenericBlocks.CYAN_ROSE))
 			.displayName(Text.translatable("itemGroup.lilium.generic"))
@@ -34,7 +36,6 @@ public class Lilium implements ModInitializer {
 			})
 			.build();
 
-	public static final RegistryKey<ItemGroup> IGK_LILIUM_DENDROLOGY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology"));
 	public static final ItemGroup ITEMGROUP_LILIUM_DENDROLOGY = FabricItemGroup.builder()
 			.icon(() -> new ItemStack(WoodSets.DARK_MARSHMALLOW.contents.getFirst()))
 			.displayName(Text.translatable("itemGroup.lilium.dendrology"))
@@ -49,7 +50,9 @@ public class Lilium implements ModInitializer {
 	public void onInitialize() {
 		BlockRegistry.init();
 
-		Registry.register(Registries.ITEM_GROUP, IGK_LILIUM_GENERIC, ITEMGROUP_LILIUM_GENERIC);
-		Registry.register(Registries.ITEM_GROUP, IGK_LILIUM_DENDROLOGY, ITEMGROUP_LILIUM_DENDROLOGY);
+		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_generic")), ITEMGROUP_LILIUM_GENERIC);
+		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology")), ITEMGROUP_LILIUM_DENDROLOGY);
+
+		Registry.register(Registries.SOUND_EVENT, Identifier.of("lilium", "crate_open"), CRATE_OPEN);
 	}
 }

@@ -8,6 +8,7 @@ import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.ColorCode;
 import xyz.lilyflower.lilium.block.GearBlock;
+import xyz.lilyflower.lilium.block.SupplyCrateBlock;
 
 @SuppressWarnings("unused")
 public class GenericBlocks {
@@ -34,4 +35,6 @@ public class GenericBlocks {
     public static final Block ROSE = BlockRegistry.flower("rose", new FlowerBlock(StatusEffects.LUCK, 30.0F, AbstractBlock.Settings.copy(Blocks.POPPY)));
     public static final Block CYAN_ROSE = BlockRegistry.flower("rose_cyan", new FlowerBlock(StatusEffects.INVISIBILITY, 30.0F, AbstractBlock.Settings.copy(Blocks.POPPY)));
     public static final Block PAEONIA = BlockRegistry.flower("paeonia", new FlowerBlock(StatusEffects.HUNGER, 3.0F, AbstractBlock.Settings.copy(Blocks.POPPY)));
+
+    public static final Block SUPPLY_CRATE = BlockRegistry.create("chest_locked_aprilfools_super_old_legacy_we_should_not_even_have_this", new SupplyCrateBlock());
 }
