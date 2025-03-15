@@ -48,7 +48,7 @@ public class SupplyCrateBlock extends Block {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) {
-            return ActionResult.PASS;
+            return ActionResult.CONSUME;
         }
 
         if (player instanceof ServerPlayerEntity server && server.interactionManager.getGameMode() == GameMode.ADVENTURE) {
@@ -132,8 +132,10 @@ public class SupplyCrateBlock extends Block {
 
             case PRESERVATION -> {
                 int roses = random.nextBetween(1, 5);
-                int cyans = random.nextBetween(0, 3);
-                int paeonias = random.nextBetween(0, 2);
+                boolean cyan = random.nextBetween(1, 100) <= 5;
+                int cyans = cyan ? random.nextBetween(0, 3) : 0;
+                boolean paeonia = random.nextBetween(1, 100) <= 20;
+                int paeonias = paeonia ? random.nextBetween(0, 2) : 0;
                 Item sapling = WoodSets.values()[random.nextBetween(0, 12)].contents.get(8).asItem();
                 int saplings = random.nextBetween(0, 6);
                 int grass = random.nextBetween(1, 8);
