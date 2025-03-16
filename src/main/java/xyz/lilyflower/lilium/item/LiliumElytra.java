@@ -62,7 +62,7 @@ public class LiliumElytra extends ElytraItem implements FabricElytraItem {
                 }
 
                 if (stack.getName().getString().equals("Suspicious " + stack.getItem().getName().getString())) {
-                    texture = Identifier.of("lilium", "textures/entity/elytra/" + name + "_suspiacious.png");
+                    texture = Identifier.of("lilium", "textures/entity/elytra/" + name + "_suspicious.png");
                 }
 
                 matrixStack.push();
