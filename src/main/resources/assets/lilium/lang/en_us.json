@@ -1,5 +1,28 @@
 {
+  "tag.item.c.elytra": "Elytras",
+
   "item.lilium.ruby": "Ruby",
+
+  "item.lilium.elytra_black": "Black Elytra",
+  "item.lilium.elytra_blue": "Blue Elytra",
+  "item.lilium.elytra_brown": "Brown Elytra",
+  "item.lilium.elytra_cyan": "Cyan Elytra",
+  "item.lilium.elytra_gray": "Gray Elytra",
+  "item.lilium.elytra_green": "Green Elytra",
+  "item.lilium.elytra_lesbian": "Lesbian Elytra",
+  "item.lilium.elytra_light_blue": "Light Blue Elytra",
+  "item.lilium.elytra_light_gray": "Light Gray Elytra",
+  "item.lilium.elytra_lime": "Lime Elytra",
+  "item.lilium.elytra_magenta": "Magenta Elytra",
+  "item.lilium.elytra_non_binary": "Non-Binary Elytra",
+  "item.lilium.elytra_orange": "Orange Elytra",
+  "item.lilium.elytra_pink": "Pink Elytra",
+  "item.lilium.elytra_pride": "Pride Elytra",
+  "item.lilium.elytra_purple": "Purple Elytra",
+  "item.lilium.elytra_red": "Red Elytra",
+  "item.lilium.elytra_trans": "Trans Elytra",
+  "item.lilium.elytra_white": "White Elytra",
+  "item.lilium.elytra_yellow": "Yellow Elytra",
 
   "block.lilium.grass": "Ancient Grass",
   "block.lilium.cobblestone": "Ancient Cobblestone",
@@ -45,6 +68,10 @@
   "block.lilium.cloth_gray": "Grey Cloth",
   "block.lilium.cloth_light_gray": "Light Grey Cloth",
   "block.lilium.cloth_white": "White Cloth",
+
+  "block.lilium.glass": "Frosted Glass",
+  "block.lilium.glass_but_not_really": "Fake Glass",
+
 
   "block.lilium.acemus_sapling": "Acemus Sapling",
   "block.lilium.cedrum_sapling": "Cedrum Sapling",
@@ -224,6 +251,7 @@
   "block.lilium.tuopa_slab": "Tuopa Slab",
   "block.lilium.tuopa_stairs": "Tuopa Stairs",
 
-  "itemGroup.lilium.generic": "Lilium - General",
-  "itemGroup.lilium.dendrology": "Lilium - Dendrology"
+  "itemGroup.lilium.dendrology": "Lilium - Dendrology",
+  "itemGroup.lilium.elytras": "Lilium - Elytras",
+  "itemGroup.lilium.generic": "Lilium - General"
 }

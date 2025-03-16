@@ -100,12 +100,13 @@ public class SupplyCrateBlock extends Block {
 
                 for (int index = 0; index < types; index++) {
                     int count = random.nextBetween(1, 64);
-                    int drop = random.nextBetween(0, 3);
+                    int drop = random.nextBetween(0, 4);
                     drops.put(switch (drop) {
                         case 0 -> GenericBlocks.OLD_SAND.asItem();
                         case 1 -> GenericBlocks.OLD_GRAVEL.asItem();
                         case 2 -> GenericBlocks.OLD_BRICK.asItem();
                         case 3 -> GenericBlocks.OLD_COBBLESTONE.asItem();
+                        case 4 -> GenericBlocks.OLD_GLASS.asItem();
                         default -> throw new IllegalStateException("Unexpected value: " + drop);
                     }, count);
                 }

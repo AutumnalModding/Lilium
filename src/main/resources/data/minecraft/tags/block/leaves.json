@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:delnas_leaves",
-    "lilium:ewcaly_leaves",
-    "lilium:tuopa_leaves",
     "lilium:salyx_leaves",
-    "lilium:kulist_leaves",
-    "lilium:lata_leaves",
-    "lilium:kiparis_leaves",
-    "lilium:cerasu_leaves",
-    "lilium:nucis_leaves",
     "lilium:light_marshmallow_leaves",
+    "lilium:delnas_leaves",
+    "lilium:tuopa_leaves",
     "lilium:marshmallow_leaves",
-    "lilium:cedrum_leaves",
+    "lilium:cerasu_leaves",
+    "lilium:kulist_leaves",
+    "lilium:ewcaly_leaves",
+    "lilium:nucis_leaves",
+    "lilium:lata_leaves",
+    "lilium:dark_marshmallow_leaves",
     "lilium:hekur_leaves",
+    "lilium:kiparis_leaves",
+    "lilium:cedrum_leaves",
     "lilium:acemus_leaves",
-    "lilium:porffor_leaves",
-    "lilium:dark_marshmallow_leaves"
+    "lilium:porffor_leaves"
   ]
 }

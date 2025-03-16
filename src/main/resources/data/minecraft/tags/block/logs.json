@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:kulist_log",
     "lilium:salyx_log",
-    "lilium:lata_log",
     "lilium:cerasu_log",
-    "lilium:light_marshmallow_log",
-    "lilium:delnas_log",
-    "lilium:marshmallow_log",
-    "lilium:dark_marshmallow_log",
-    "lilium:kiparis_log",
-    "lilium:tuopa_log",
-    "lilium:cedrum_log",
     "lilium:acemus_log",
+    "lilium:light_marshmallow_log",
+    "lilium:kiparis_log",
+    "lilium:delnas_log",
     "lilium:porffor_log",
-    "lilium:ewcaly_log",
     "lilium:nucis_log",
+    "lilium:dark_marshmallow_log",
+    "lilium:kulist_log",
+    "lilium:marshmallow_log",
+    "lilium:cedrum_log",
+    "lilium:tuopa_log",
+    "lilium:lata_log",
+    "lilium:ewcaly_log",
     "lilium:hekur_log"
   ]
 }

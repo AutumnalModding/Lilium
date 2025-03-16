@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:elytra",
+    "lilium:elytra_white",
+    "lilium:elytra_orange",
+    "lilium:elytra_magenta",
+    "lilium:elytra_light_blue",
+    "lilium:elytra_yellow",
+    "lilium:elytra_lime",
+    "lilium:elytra_pink",
+    "lilium:elytra_gray",
+    "lilium:elytra_light_gray",
+    "lilium:elytra_cyan",
+    "lilium:elytra_purple",
+    "lilium:elytra_blue",
+    "lilium:elytra_brown",
+    "lilium:elytra_green",
+    "lilium:elytra_red",
+    "lilium:elytra_black",
+    "lilium:elytra_lesbian",
+    "lilium:elytra_non_binary",
+    "lilium:elytra_pride",
+    "lilium:elytra_trans"
+  ]
+}

@@ -5,16 +5,25 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRendererRegistrationCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.model.ArmorStandEntityModel;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.RawTextureDataLoader;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
+import xyz.lilyflower.lilium.item.LiliumElytra;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
 import xyz.lilyflower.lilium.util.registry.block.WoodSets;
@@ -35,10 +44,21 @@ public class LiliumClient implements ClientModInitializer {
         return colormap[i << 8 | j];
     }
 
+
+
     @Override
     public void onInitializeClient() {
+        LivingEntityFeatureRendererRegistrationCallback.EVENT.register(((EntityType<? extends LivingEntity> entityType, LivingEntityRenderer<?, ?> entityRenderer, LivingEntityFeatureRendererRegistrationCallback.RegistrationHelper registrationHelper, EntityRendererFactory.Context context) -> {
+            if (entityRenderer.getModel() instanceof PlayerEntityModel || entityRenderer.getModel() instanceof BipedEntityModel || entityRenderer.getModel() instanceof ArmorStandEntityModel) {
+                registrationHelper.register(new LiliumElytra.Renderer<>(entityRenderer, context.getModelLoader()));
+            }
+        }));
+
         BlockRenderLayerMap.INSTANCE.putBlock(GenericBlocks.GEAR_PRIMARY, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(GenericBlocks.GEAR_SECONDARY, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(GenericBlocks.OLD_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(GenericBlocks.GLASS_BUT_NOT_REALLY, RenderLayer.getTranslucent());
 
         for (Block flower : BlockRegistry.FLOWERS) {
             BlockRenderLayerMap.INSTANCE.putBlock(flower, RenderLayer.getCutout());

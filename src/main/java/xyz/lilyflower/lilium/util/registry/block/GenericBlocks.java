@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ColoredFallingBlock;
 import net.minecraft.block.FlowerBlock;
+import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.ColorCode;
 import xyz.lilyflower.lilium.block.SupplyCrateBlock;
@@ -36,4 +37,7 @@ public class GenericBlocks {
     public static final Block PAEONIA = BlockRegistry.flower("paeonia", new FlowerBlock(StatusEffects.HUNGER, 3.0F, AbstractBlock.Settings.copy(Blocks.POPPY)));
 
     public static final Block SUPPLY_CRATE = BlockRegistry.create("chest_locked_aprilfools_super_old_legacy_we_should_not_even_have_this", new SupplyCrateBlock());
+
+    public static final Block OLD_GLASS = BlockRegistry.create("glass", new TransparentBlock(AbstractBlock.Settings.copy(Blocks.GLASS)));
+    public static final Block GLASS_BUT_NOT_REALLY = BlockRegistry.create("glass_but_not_really", new TransparentBlock(AbstractBlock.Settings.copy(Blocks.GLASS)));
 }

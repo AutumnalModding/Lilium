@@ -6,7 +6,9 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import xyz.lilyflower.lilium.Lilium;
-import xyz.lilyflower.lilium.item.GenericItems;
+import xyz.lilyflower.lilium.item.LiliumElytra;
+import xyz.lilyflower.lilium.util.registry.item.GenericItems;
+import xyz.lilyflower.lilium.util.registry.item.LiliumElytras;
 
 @SuppressWarnings("InstantiationOfUtilityClass")
 public class ItemRegistry {
@@ -26,5 +28,6 @@ public class ItemRegistry {
 
     static {
         new GenericItems();
+        new LiliumElytras();
     }
 }

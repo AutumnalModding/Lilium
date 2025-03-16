@@ -1,9 +1,12 @@
 package xyz.lilyflower.lilium;
 
+import java.util.HashMap;
+import java.util.Map;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -11,14 +14,17 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
+import xyz.lilyflower.lilium.item.LiliumElytra;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
 
 import org.apache.logging.log4j.Logger;
 import xyz.lilyflower.lilium.util.registry.block.WoodSets;
 import xyz.lilyflower.lilium.util.registry.ItemRegistry;
+import xyz.lilyflower.lilium.util.registry.item.LiliumElytras;
 
 public class Lilium implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Lilium");
@@ -36,7 +42,9 @@ public class Lilium implements ModInitializer {
 				});
 
 				ItemRegistry.ITEMS.forEach((name, item) -> {
-					entries.add(item);
+					if (!name.contains("elytra_")) {
+						entries.add(item);
+					}
 				});
 			})
 			.build();
@@ -51,6 +59,18 @@ public class Lilium implements ModInitializer {
 			})
 			.build();
 
+	public static final ItemGroup ITEMGROUP_LILIUM_ELYTRAS = FabricItemGroup.builder()
+			.icon(() -> new ItemStack(LiliumElytras.ELYTRA_LESBIAN))
+			.displayName(Text.translatable("itemGroup.lilium.elytras"))
+			.entries((displayContext, entries) -> {
+				ItemRegistry.ITEMS.forEach((name, item) -> {
+					if (name.contains("elytra_")) {
+						entries.add(item);
+					}
+				});
+			})
+			.build();
+
 	@Override
 	public void onInitialize() {
 		BlockRegistry.init();
@@ -58,6 +78,7 @@ public class Lilium implements ModInitializer {
 
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_generic")), ITEMGROUP_LILIUM_GENERIC);
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology")), ITEMGROUP_LILIUM_DENDROLOGY);
+		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_elytras")), ITEMGROUP_LILIUM_ELYTRAS);
 
 		Registry.register(Registries.SOUND_EVENT, Identifier.of("lilium", "crate_open"), CRATE_OPEN);
 	}

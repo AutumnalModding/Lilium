@@ -1,20 +1,20 @@
 {
   "values": [
-    "lilium:lata_fence",
-    "lilium:acemus_fence",
-    "lilium:marshmallow_fence",
-    "lilium:porffor_fence",
-    "lilium:kiparis_fence",
+    "lilium:salyx_fence",
     "lilium:nucis_fence",
     "lilium:tuopa_fence",
-    "lilium:cerasu_fence",
-    "lilium:cedrum_fence",
-    "lilium:kulist_fence",
-    "lilium:ewcaly_fence",
-    "lilium:hekur_fence",
-    "lilium:salyx_fence",
     "lilium:dark_marshmallow_fence",
+    "lilium:cedrum_fence",
+    "lilium:ewcaly_fence",
+    "lilium:cerasu_fence",
+    "lilium:porffor_fence",
+    "lilium:acemus_fence",
     "lilium:delnas_fence",
-    "lilium:light_marshmallow_fence"
+    "lilium:lata_fence",
+    "lilium:light_marshmallow_fence",
+    "lilium:kiparis_fence",
+    "lilium:kulist_fence",
+    "lilium:marshmallow_fence",
+    "lilium:hekur_fence"
   ]
 }
