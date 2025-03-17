@@ -4,6 +4,7 @@
   "package": "xyz.lilyflower.lilium.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EntityDamageTimerHandler"
   ],
   "client": [
     "client.DirectClickHandlerMixin"
