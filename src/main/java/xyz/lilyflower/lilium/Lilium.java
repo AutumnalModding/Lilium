@@ -27,6 +27,7 @@ import xyz.lilyflower.lilium.util.registry.item.LiliumElytras;
 public class Lilium implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger("Lilium");
 
+	public static final SoundEvent DISCHARGE = SoundEvent.of(Identifier.of("lilium", "discharge"));
 	public static final SoundEvent CRATE_OPEN = SoundEvent.of(Identifier.of("lilium", "crate_open"));
 
 	public static final ItemGroup ITEMGROUP_LILIUM_GENERIC = FabricItemGroup.builder()
@@ -80,6 +81,7 @@ public class Lilium implements ModInitializer {
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_dendrology")), ITEMGROUP_LILIUM_DENDROLOGY);
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_elytras")), ITEMGROUP_LILIUM_ELYTRAS);
 
+		Registry.register(Registries.SOUND_EVENT, Identifier.of("lilium", "discharge"), DISCHARGE);
 		Registry.register(Registries.SOUND_EVENT, Identifier.of("lilium", "crate_open"), CRATE_OPEN);
 
 		// TODO: Reflections this

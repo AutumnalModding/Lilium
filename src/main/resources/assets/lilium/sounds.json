@@ -3,6 +3,11 @@
         "sounds": [
           "lilium:crate_open"
         ]
+      },
+      "discharge": {
+        "sounds": [
+          "lilium:discharge"
+        ]
       }
     }
 

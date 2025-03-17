@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -48,6 +49,14 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
                 DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
                 entity.damage(source, 80.0F);
                 player.getItemCooldownManager().set(this, 600);
+                player.getWorld().playSound(
+                        null, // Player - if non-null, will play sound for every nearby player *except* the specified player
+                        player.getBlockPos(), // The position of where the sound will come from
+                        Lilium.DISCHARGE, // The sound that will play
+                        SoundCategory.PLAYERS, // This determines which of the volume sliders affect this sound
+                        1f, // Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                        1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
+                );
             }
         }
 
