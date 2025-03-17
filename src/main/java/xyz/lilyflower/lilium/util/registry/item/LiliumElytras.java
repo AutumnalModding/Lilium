@@ -25,6 +25,7 @@ public class LiliumElytras {
     public static final Item ELYTRA_NON_BINARY = ItemRegistry.create("elytra_non_binary", new LiliumElytra());
     public static final Item ELYTRA_PRIDE = ItemRegistry.create("elytra_pride", new LiliumElytra());
     public static final Item ELYTRA_TRANS = ItemRegistry.create("elytra_trans", new LiliumElytra());
+    public static final Item ELYTRA_GTNH = ItemRegistry.create("elytra_gtnh", new LiliumElytra());
 
     static {
         generateElytras();

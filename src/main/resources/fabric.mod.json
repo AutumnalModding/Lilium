@@ -4,6 +4,9 @@
 	"version": "${version}",
 	"name": "Lilium",
 	"description": "Whatever I felt like adding :3",
+	"mixins": [
+		"lilium.mixins.json"
+	],
 	"authors": [
 		"LilyflowerFDL / SpectreiCyanogen"
 	],

@@ -60,7 +60,7 @@ public class SupplyCrateBlock extends Block {
                 pos, // The position of where the sound will come from
                 Lilium.CRATE_OPEN, // The sound that will play
                 SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
-                1f, //Volume multiplier, 1 is normal, 0.5 is half volume, etc
+                1f, // Volume multiplier, 1 is normal, 0.5 is half volume, etc
                 1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
         );
 

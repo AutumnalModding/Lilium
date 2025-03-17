@@ -1,23 +1,21 @@
 package xyz.lilyflower.lilium;
 
-import java.util.HashMap;
-import java.util.Map;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.minecraft.entity.damage.DamageType;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
-import xyz.lilyflower.lilium.item.LiliumElytra;
+import xyz.lilyflower.lilium.network.LiliumDirectClickPacket;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
 
@@ -71,6 +69,8 @@ public class Lilium implements ModInitializer {
 			})
 			.build();
 
+	public static final RegistryKey<DamageType> RAILGUN_DAMAGE_TYPE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("lilium", "railgun"));
+
 	@Override
 	public void onInitialize() {
 		BlockRegistry.init();
@@ -81,5 +81,8 @@ public class Lilium implements ModInitializer {
 		Registry.register(Registries.ITEM_GROUP, RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of("lilium", "item_group_elytras")), ITEMGROUP_LILIUM_ELYTRAS);
 
 		Registry.register(Registries.SOUND_EVENT, Identifier.of("lilium", "crate_open"), CRATE_OPEN);
+
+		// TODO: Reflections this
+		new LiliumDirectClickPacket().register();
 	}
 }

@@ -1,7 +1,10 @@
 {
+  "death.attack.railgun": "%1$s was dishonourably discharged from reality.",
+
   "tag.item.c.elytra": "Elytras",
 
   "item.lilium.ruby": "Ruby",
+  "item.lilium.discharge_cannon": "Discharge Cannon",
 
   "item.lilium.elytra_black": "Black Elytra",
   "item.lilium.elytra_blue": "Blue Elytra",
@@ -23,6 +26,7 @@
   "item.lilium.elytra_trans": "Trans Elytra",
   "item.lilium.elytra_white": "White Elytra",
   "item.lilium.elytra_yellow": "Yellow Elytra",
+  "item.lilium.elytra_gtnh": "GregTech: New Horizons Elytra",
 
   "block.lilium.grass": "Ancient Grass",
   "block.lilium.cobblestone": "Ancient Cobblestone",

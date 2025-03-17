@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "minecraft:missingno"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "lilium:discharge_cannon_state": 0.0
+            },
+            "model": "lilium:item/discharge_cannon_charge_none"
+        },
+        {
+            "predicate": {
+                "lilium:discharge_cannon_state": 0.25
+            },
+            "model": "lilium:item/discharge_cannon_charge_partial"
+        },
+        {
+            "predicate": {
+                "lilium:discharge_cannon_state": 0.50
+            },
+            "model": "lilium:item/discharge_cannon_charge_almost"
+        },
+        {
+            "predicate": {
+                "lilium:discharge_cannon_state": 1.0
+            },
+            "model": "lilium:item/discharge_cannon_charge_full"
+        }
+    ]
+}
