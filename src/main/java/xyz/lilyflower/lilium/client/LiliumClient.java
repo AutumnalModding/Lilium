@@ -18,15 +18,12 @@ import net.minecraft.client.render.entity.model.ArmorStandEntityModel;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import net.minecraft.client.util.RawTextureDataLoader;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import xyz.lilyflower.lilium.Lilium;
 import xyz.lilyflower.lilium.item.DischargeCannonItem;
 import xyz.lilyflower.lilium.item.LiliumElytra;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
@@ -119,14 +116,11 @@ public class LiliumClient implements ClientModInitializer {
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> getLeavesColor(pos, KULIST_COLOURMAP), WoodSets.KULIST.contents.get(9));
 
         ModelPredicateProviderRegistry.register(Identifier.of("lilium", "discharge_cannon_state"), (stack, world, entity, seed) -> {
-            if (entity instanceof PlayerEntity player) {
-                float cooldown = player.getItemCooldownManager().getCooldownProgress(stack.getItem(), 0.0F);
-                if (cooldown == 0) return 1.0F;
-                if (cooldown <= 0.33F) return 0.50F;
-                if (cooldown <= 0.66F) return 0.25F;
-                if (cooldown <= 1.0F) return 0.0F;
-            }
-            return 1.0F;
+            boolean cooldown = stack.getOrDefault(DischargeCannonItem.COOLING_DOWN, false);
+            float charge = stack.getOrDefault(DischargeCannonItem.CHARGE_LEVEL, cooldown ? 0F : 1.0F);
+            if (charge >= 1.0F && charge < 1.5F) return 0.99F;
+            if (charge >= 1.5F) return 1.0F;
+            return charge;
         });
     }
 }
