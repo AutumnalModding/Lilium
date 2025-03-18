@@ -10,6 +10,9 @@
 	"authors": [
 		"LilyflowerFDL / SpectreiCyanogen"
 	],
+	"contributors": [
+		"St33lbmc (for the Elytra textures)"
+	],
 	"license": "GNU-GPLv3-only",
 	"icon": "assets/lilium/icon.png",
 	"environment": "*",

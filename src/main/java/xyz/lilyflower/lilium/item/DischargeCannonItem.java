@@ -47,7 +47,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         if (result instanceof EntityHitResult ehr) {
             LivingEntity entity = (LivingEntity) ehr.getEntity();
 
-            if (!entity.isInvulnerable()) {
+            if (!entity.isInvulnerable() && !entity.isInCreativeMode()) {
                 DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
                 ServerWorld world = (ServerWorld) player.getWorld();
                 ((LiliumTimer) world).delayEntityDamage(30L, entity, source, 80.0F);
