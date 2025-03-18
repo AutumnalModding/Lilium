@@ -118,6 +118,7 @@ public class LiliumClient implements ClientModInitializer {
         ModelPredicateProviderRegistry.register(Identifier.of("lilium", "discharge_cannon_state"), (stack, world, entity, seed) -> {
             boolean cooldown = stack.getOrDefault(DischargeCannonItem.COOLING_DOWN, false);
             float charge = stack.getOrDefault(DischargeCannonItem.CHARGE_LEVEL, cooldown ? 0F : 1.0F);
+            if (charge >= 0.99F && charge < 1.0F) return 0.98F;
             if (charge >= 1.0F && charge < 1.5F) return 0.99F;
             if (charge >= 1.5F) return 1.0F;
             return charge;

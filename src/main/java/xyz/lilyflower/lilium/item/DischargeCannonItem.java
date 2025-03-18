@@ -34,7 +34,7 @@ import xyz.lilyflower.lilium.util.LiliumTimer;
 public class DischargeCannonItem extends Item implements DirectClickItem {
     public static final ComponentType<Float> CHARGE_LEVEL = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of("lilium", "discharge_cannnon_charge_level"),
+            Identifier.of("lilium", "discharge_cannon_charge_level"),
             ComponentType.<Float>builder().codec(Codec.FLOAT).build()
     );
 
@@ -46,13 +46,13 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
     public static final ComponentType<Integer> COOLDOWN_TICKS = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of("lilium", "discharge_cannnon_cooldown_ticks"),
+            Identifier.of("lilium", "discharge_cannon_cooldown_ticks"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
 
     public static final ComponentType<Integer> CHARGE_TICKS = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of("lilium", "discharge_cannnon_charge_ticks"),
+            Identifier.of("lilium", "discharge_cannon_charge_ticks"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
 
@@ -67,7 +67,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         ItemStack stack = player.getMainHandStack();
 
         float charge = stack.getOrDefault(CHARGE_LEVEL, 0F);
-        if (charge < 0.33F) return ActionResult.FAIL;
+        if (charge < 0.66F) return ActionResult.FAIL;
         if (stack.getOrDefault(COOLING_DOWN, false)) return ActionResult.FAIL;
         stack.set(COOLING_DOWN, true);
         stack.set(CHARGE_TICKS, 0);
@@ -84,7 +84,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
                 1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
         );
 
-        ExplosionBehavior behavior = new AdvancedExplosionBehavior(true, false, Optional.of(2F * charge), Optional.empty());
+        ExplosionBehavior behavior = new AdvancedExplosionBehavior(true, false, Optional.of(2.5F * charge), Optional.empty());
         World world = player.getWorld();
         BlockPos pos = player.getBlockPos();
         world.createExplosion(null, null, behavior, pos.getX(), pos.getY(), pos.getZ(), 4F, false, World.ExplosionSourceType.TRIGGER);
@@ -113,47 +113,31 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         if (player.getWorld().isClient) return ActionResult.SUCCESS;
 
         ItemStack stack = player.getMainHandStack();
+
         int ticks = stack.getOrDefault(CHARGE_TICKS, 0);
         float charge = stack.getOrDefault(CHARGE_LEVEL, 0F);
+        float coefficient = 0.185F;
+        double log = Math.log(ticks == 0 ? 1 : ticks);
 
-        // Algo 1:
-//        int max = 40 * 2;
-//        int halfway = 20 * 60;
-//
-//
-//        double log = Math.log(ticks == 0 ? 1 : ticks);
-//
-//        double charge = stack.getOrDefault(CHARGE_LEVEL, 0F);
-//        double target;
-//        if (charge > halfway) {
-//            target = coefficient * log;
-//        } else {
-//            target = max / (1 + Math.pow(Math.E, -ticks));
-//        }
-//
-//        double damage = max / (1 + Math.exp(-ticks));
-//
-//        stack.set(CHARGE_TICKS, ++ticks);
-//
-//        Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, damage, ticks / 20, ticks);
-//        stack.set(CHARGE_LEVEL, (float) target);
+        stack.set(CHARGE_TICKS, ++ticks);
 
-        // Algo 2:
-//        float coefficient = 0.185F;
-//
-//        double log = Math.log(ticks == 0 ? 1 : ticks);
-//        double target = coefficient * log;
-//        stack.set(CHARGE_TICKS, ++ticks);
-//
-//        Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, 20.0F * target, ticks / 20, ticks);
-//
-//        stack.set(CHARGE_LEVEL, (float) target);
+        float target;
+        if (charge >= 1.0F) {
+            target = (float) (coefficient * log);
+        } else {
+            target = charge + 0.001666666666666667F;
+        }
 
+        stack.set(CHARGE_LEVEL, target);
+
+        Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, 20.0F * target, ticks / 20, ticks);
         return ActionResult.CONSUME;
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (world.isClient) return;
+
         if (stack.getOrDefault(COOLING_DOWN, false)) {
             int cooldown = stack.getOrDefault(COOLDOWN_TICKS, 0);
             stack.set(COOLDOWN_TICKS, --cooldown);
