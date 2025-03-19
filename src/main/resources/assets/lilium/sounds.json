@@ -4,9 +4,14 @@
           "lilium:crate_open"
         ]
       },
-      "discharge": {
+      "discharge_cannon_fire": {
         "sounds": [
-          "lilium:discharge"
+          "lilium:discharge_cannon/fire"
+        ]
+      },
+      "discharge_cannon_charged": {
+        "sounds": [
+          "lilium:discharge_cannon/charged"
         ]
       }
     }

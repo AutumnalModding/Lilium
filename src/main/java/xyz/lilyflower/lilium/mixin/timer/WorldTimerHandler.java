@@ -1,20 +1,18 @@
 package xyz.lilyflower.lilium.mixin.timer;
 
-import java.util.List;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.hit.EntityHitResult;
+import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
-import org.jetbrains.annotations.Nullable;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,10 +21,11 @@ import xyz.lilyflower.lilium.util.LiliumTimer;
 
 @Mixin(ServerWorld.class)
 public abstract class WorldTimerHandler implements LiliumTimer {
-    @Shadow @Final private List<ServerPlayerEntity> players;
     @Unique private long damage_delay;
     @Unique private float damage_amount;
     @Unique private LivingEntity damage_target;
+    @Unique private PlayerEntity damage_raycast_player;
+    @Unique private double damage_raycast_distance;
     @Unique private DamageSource damage_type;
     @Unique private BlockPos damage_position;
 
@@ -40,8 +39,27 @@ public abstract class WorldTimerHandler implements LiliumTimer {
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void process(CallbackInfo ci) {
-        if (--this.damage_delay == 0L && this.damage_target.getBlockPos() == this.damage_position) {
-            damage_target.damage(damage_type, damage_amount);
+        if (--this.damage_delay == 0L) {
+            if (this.damage_raycast_player != null) {
+                double distance = this.damage_raycast_distance;
+                PlayerEntity player = this.damage_raycast_player;
+
+                Vec3d start = player.getEyePos();
+                Vec3d end = player.getEyePos().add(player.getRotationVector().multiply(distance));
+
+                HitResult result = ProjectileUtil.raycast(player, start, end, new Box(start, end), entity -> entity instanceof LivingEntity, distance*distance);
+                if (result instanceof EntityHitResult ehr) {
+                    LivingEntity entity = (LivingEntity) ehr.getEntity();
+
+                    if (!entity.isInvulnerable() && !entity.isInCreativeMode()) {
+                        entity.damage(this.damage_type, this.damage_amount);
+                    }
+                }
+            } else if (this.damage_target != null && this.damage_position != null && this.damage_target.getBlockPos() == this.damage_position) {
+                this.damage_target.damage(this.damage_type, this.damage_amount);
+            } else if (this.damage_target != null && this.damage_position == null) {
+                this.damage_target.damage(this.damage_type, this.damage_amount);
+            }
         }
 
         if (--this.explosion_delay == 0L) {
@@ -60,6 +78,15 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     }
 
     @Override
+    public void lilium$damage_raycast(long delay, PlayerEntity source, double distance, DamageSource type, float amount) {
+        this.damage_delay = delay;
+        this.damage_raycast_player = source;
+        this.damage_raycast_distance = distance;
+        this.damage_type = type;
+        this.damage_amount = amount;
+    }
+
+    @Override
     public void lilium$explosion(long delay, ExplosionBehavior behaviour, BlockPos location, float power, boolean fire, World.ExplosionSourceType type) {
         this.explosion_delay = delay;
         this.explosion_behaviour = behaviour;
@@ -70,7 +97,7 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     }
 
     @Override
-    public void lilium$playerExplosion(long delay, ExplosionBehavior behaviour, PlayerEntity player, float power, boolean fire, World.ExplosionSourceType type) {
+    public void lilium$explosion_player(long delay, ExplosionBehavior behaviour, PlayerEntity player, float power, boolean fire, World.ExplosionSourceType type) {
         this.explosion_delay = delay;
         this.explosion_behaviour = behaviour;
         this.explosion_player = player;

@@ -21,10 +21,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameMode;
 import net.minecraft.world.World;
-import xyz.lilyflower.lilium.Lilium;
 import xyz.lilyflower.lilium.util.registry.BlockRegistry;
 import xyz.lilyflower.lilium.util.registry.block.GenericBlocks;
 import xyz.lilyflower.lilium.util.registry.block.WoodSets;
+import xyz.lilyflower.lilium.util.registry.sound.GenericSounds;
 
 public class SupplyCrateBlock extends Block {
     public static final DirectionProperty FACING;
@@ -58,7 +58,7 @@ public class SupplyCrateBlock extends Block {
         world.playSound(
                 null, // Player - if non-null, will play sound for every nearby player *except* the specified player
                 pos, // The position of where the sound will come from
-                Lilium.CRATE_OPEN, // The sound that will play
+                GenericSounds.CRATE_OPEN, // The sound that will play
                 SoundCategory.BLOCKS, // This determines which of the volume sliders affect this sound
                 1f, // Volume multiplier, 1 is normal, 0.5 is half volume, etc
                 1f // Pitch multiplier, 1 is normal, 0.5 is half pitch, etc
