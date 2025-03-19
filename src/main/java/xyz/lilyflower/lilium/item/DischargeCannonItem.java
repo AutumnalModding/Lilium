@@ -2,6 +2,7 @@ package xyz.lilyflower.lilium.item;
 
 import com.mojang.serialization.Codec;
 import java.util.Optional;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +22,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -50,9 +50,9 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
 
-    public static final ComponentType<Integer> CHARGE_TICKS = Registry.register(
+    public static final ComponentType<Integer> OVERCHARGE_TICKS = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
-            Identifier.of("lilium", "discharge_cannon_charge_ticks"),
+            Identifier.of("lilium", "discharge_cannon_overcharge_ticks"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
 
@@ -70,7 +70,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         if (charge < 0.66F) return ActionResult.FAIL;
         if (stack.getOrDefault(COOLING_DOWN, false)) return ActionResult.FAIL;
         stack.set(COOLING_DOWN, true);
-        stack.set(CHARGE_TICKS, 0);
+        stack.set(OVERCHARGE_TICKS, 0);
         stack.set(CHARGE_LEVEL, 0F);
         stack.set(COOLDOWN_TICKS, 30 + (int) (150 * charge));
 
@@ -113,16 +113,18 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
         ItemStack stack = player.getMainHandStack();
 
-        int ticks = stack.getOrDefault(CHARGE_TICKS, 0);
         float charge = stack.getOrDefault(CHARGE_LEVEL, 0F);
-        float coefficient = 0.185F;
-        double log = Math.log(ticks == 0 ? 1 : ticks);
-
-        stack.set(CHARGE_TICKS, ++ticks);
 
         float target;
         if (charge >= 1.0F) {
-            target = (float) (coefficient * log);
+            float coefficient = 0.0825F;
+            int ticks = stack.getOrDefault(OVERCHARGE_TICKS, 0);
+            stack.set(OVERCHARGE_TICKS, ++ticks);
+            double log = Math.log(ticks == 0 ? 1 : ticks);
+            target = 1.0F + (float) (coefficient * log);
+            if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+                Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, 20.0F * target, ticks / 20, ticks);
+            }
         } else {
             target = charge + 0.001666666666666667F;
         }
