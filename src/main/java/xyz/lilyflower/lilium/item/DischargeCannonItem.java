@@ -129,7 +129,6 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
         stack.set(CHARGE_LEVEL, target);
 
-        Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, 20.0F * target, ticks / 20, ticks);
         return ActionResult.CONSUME;
     }
 
