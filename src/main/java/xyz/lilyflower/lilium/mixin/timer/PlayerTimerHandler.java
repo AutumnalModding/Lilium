@@ -1,4 +1,4 @@
-package xyz.lilyflower.lilium.mixin;
+package xyz.lilyflower.lilium.mixin.timer;
 
 import net.minecraft.entity.player.ItemCooldownManager;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.lilyflower.lilium.util.LiliumTimer;
 
 @Mixin(PlayerEntity.class)
-public abstract class CooldownTimerHandler implements LiliumTimer {
+public abstract class PlayerTimerHandler implements LiliumTimer {
     @Shadow @Final private ItemCooldownManager itemCooldownManager;
     @Unique private long delay;
     @Unique private int cooldown;
@@ -27,7 +27,7 @@ public abstract class CooldownTimerHandler implements LiliumTimer {
     }
 
     @Override
-    public void cooldown(long delay, int cooldown, Item item) {
+    public void lilium$cooldown(long delay, int cooldown, Item item) {
         this.delay = delay;
         this.cooldown = cooldown;
         this.item = item;

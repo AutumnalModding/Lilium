@@ -74,7 +74,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         stack.set(CHARGE_LEVEL, 0F);
         stack.set(COOLDOWN_TICKS, 30 + (int) (150 * charge));
 
-        ((LiliumTimer) player).cooldown(30L, (int) (150 * charge), this);
+        ((LiliumTimer) player).lilium$cooldown(30L, (int) (150 * charge), this);
         player.getWorld().playSound(
                 null, // Player - if non-null, will play sound for every nearby player *except* the specified player
                 player.getBlockPos(), // The position of where the sound will come from
@@ -86,8 +86,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
         ExplosionBehavior behavior = new AdvancedExplosionBehavior(true, false, Optional.of(2.5F * charge), Optional.empty());
         World world = player.getWorld();
-        BlockPos pos = player.getBlockPos();
-        world.createExplosion(null, null, behavior, pos.getX(), pos.getY(), pos.getZ(), 4F, false, World.ExplosionSourceType.TRIGGER);
+        ((LiliumTimer) world).lilium$playerExplosion(30L, behavior, player, 4F, false, World.ExplosionSourceType.TRIGGER);
 
         double distance = 200.0F;
         Vec3d start = player.getEyePos();
@@ -100,7 +99,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
             if (!entity.isInvulnerable() && !entity.isInCreativeMode()) {
                 DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
                 ServerWorld there = (ServerWorld) player.getWorld();
-                ((LiliumTimer) there).damage(30L, entity, source, 20.0F * charge);
+                ((LiliumTimer) there).lilium$damage(30L, entity, source, 20.0F * charge);
 
             }
         }
