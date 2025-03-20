@@ -68,7 +68,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
         double damage = charge >= 1.5D ? 40.0D * (charge - 0.5D) : 20.0D * charge;
 
-        ((LiliumTimer) world).lilium$apply_look_velocity(30L, player, D * charge);
+        ((LiliumTimer) world).lilium$apply_look_velocity(30L, player, 3D * charge);
         ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) damage);
 
         return ActionResult.CONSUME;
