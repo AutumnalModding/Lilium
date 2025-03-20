@@ -1,6 +1,7 @@
 package xyz.lilyflower.lilium.mixin.timer;
 
 import net.minecraft.component.ComponentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,6 +45,11 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     @Unique private Object component_modification_value;
     @Unique private ItemStack component_modification_stack;
 
+    @Unique private long velocity_delay;
+    @Unique private Entity velocity_target;
+    @Unique private Vec3d velocity_addition;
+    @Unique private double velocity_power;
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void process(CallbackInfo ci) {
         if (--this.damage_delay == 0L) {
@@ -76,6 +82,12 @@ public abstract class WorldTimerHandler implements LiliumTimer {
 
         if (--this.component_modification_delay == 0L) {
             this.component_modification_stack.set(this.component_modification_type, this.component_modification_value);
+        }
+
+        if (--this.velocity_delay == 0L) {
+            Vec3d velocity = (this.velocity_addition != null ? this.velocity_addition : this.velocity_target.getRotationVector().multiply(-1).multiply(this.velocity_power));
+            this.velocity_target.addVelocity(velocity);
+            this.velocity_target.velocityModified = true;
         }
     }
 
@@ -123,5 +135,19 @@ public abstract class WorldTimerHandler implements LiliumTimer {
         this.component_modification_type = type;
         this.component_modification_value = value;
         this.component_modification_stack = stack;
+    }
+
+    @Override
+    public void lilium$apply_velocity(long delay, Entity target, Vec3d velocity) {
+        this.velocity_delay = delay;
+        this.velocity_target = target;
+        this.velocity_addition = velocity;
+    }
+
+    @Override
+    public void lilium$apply_look_velocity(long delay, Entity target, double power) {
+        this.velocity_delay = delay;
+        this.velocity_target = target;
+        this.velocity_power = power;
     }
 }
