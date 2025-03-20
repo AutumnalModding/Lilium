@@ -1,7 +1,6 @@
 package xyz.lilyflower.lilium.mixin.client;
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.ItemCooldownManager;
@@ -16,7 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import xyz.lilyflower.lilium.network.payload.DirectAttackPayload;
 import xyz.lilyflower.lilium.network.payload.DirectUsePayload;
-import xyz.lilyflower.lilium.util.DirectClickItem;
+import xyz.lilyflower.lilium.util.DirectAttackItem;
+import xyz.lilyflower.lilium.util.DirectUseItem;
 
 @Mixin(MinecraftClient.class)
 public class DirectClickHandlerMixin {
@@ -27,7 +27,7 @@ public class DirectClickHandlerMixin {
     private void doAttack(CallbackInfoReturnable<Boolean> ci) {
         ItemCooldownManager manager = player.getItemCooldownManager();
         Item item = player.getMainHandStack().getItem();
-        if (player != null && item instanceof DirectClickItem dci) {
+        if (player != null && item instanceof DirectAttackItem dci) {
             if (!manager.isCoolingDown(item) && dci.onDirectAttack(player, Hand.MAIN_HAND).isAccepted()) {
                 ClientPlayNetworking.send(DirectAttackPayload.UNIT);
             }
@@ -41,7 +41,7 @@ public class DirectClickHandlerMixin {
     private void doItemUse(CallbackInfo ci) {
         ItemCooldownManager manager = player.getItemCooldownManager();
         Item item = player.getMainHandStack().getItem();
-        if (player != null && item instanceof DirectClickItem dci) {
+        if (player != null && item instanceof DirectUseItem dci) {
             if (!manager.isCoolingDown(item) && dci.onDirectUse(player, Hand.MAIN_HAND).isAccepted()) {
                 ClientPlayNetworking.send(DirectUsePayload.UNIT);
             }
@@ -52,7 +52,7 @@ public class DirectClickHandlerMixin {
 
     @Inject(at=@At("HEAD"), method="handleBlockBreaking", cancellable=true)
     private void handleBlockBreaking(boolean bl, CallbackInfo ci) {
-        if (player != null && player.getMainHandStack().getItem() instanceof DirectClickItem) {
+        if (player != null && player.getMainHandStack().getItem() instanceof DirectAttackItem) {
             MinecraftClient self = (MinecraftClient)(Object)this;
             if (self.crosshairTarget instanceof BlockHitResult bhr) {
                 var i = player.getMainHandStack().getItem();

@@ -17,15 +17,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.AdvancedExplosionBehavior;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import xyz.lilyflower.lilium.Lilium;
-import xyz.lilyflower.lilium.util.DirectClickItem;
+import xyz.lilyflower.lilium.util.DirectAttackItem;
 import xyz.lilyflower.lilium.util.LiliumTimer;
 import xyz.lilyflower.lilium.util.registry.sound.GenericSounds;
 
-public class DischargeCannonItem extends Item implements DirectClickItem {
+public class DischargeCannonItem extends Item implements DirectAttackItem {
     public static final ComponentType<Double> CHARGE_LEVEL = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of("lilium", "discharge_cannon_charge_level"),
@@ -44,7 +45,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
     @Override
     public ActionResult onDirectAttack(PlayerEntity player, Hand hand) {
-        if (player.getWorld().isClient) return ActionResult.SUCCESS;
+        if (player.getWorld().isClient) return ActionResult.CONSUME_PARTIAL;
 
         ItemStack stack = player.getMainHandStack();
 
@@ -70,14 +71,13 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         ((LiliumTimer) world).lilium$explosion_player(30L, behavior, player, 4F, false, World.ExplosionSourceType.TRIGGER);
         ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) damage);
 
-        return ActionResult.CONSUME;
+        return ActionResult.CONSUME_PARTIAL;
     }
 
     @Override
-    public ActionResult onDirectUse(PlayerEntity player, Hand hand) {
-        if (player.getWorld().isClient) return ActionResult.SUCCESS;
-
-        ItemStack stack = player.getMainHandStack();
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        ItemStack stack = user.getMainHandStack();
+        if (user.getWorld().isClient) return TypedActionResult.pass(stack);
 
         double charge = stack.getOrDefault(CHARGE_LEVEL, 0D);
         double target;
@@ -99,9 +99,9 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         }
 
         if (Double.compare(target, 1.0D) == 0) {
-            player.getWorld().playSound(
+            user.getWorld().playSound(
                     null,
-                    player.getBlockPos(),
+                    user.getBlockPos(),
                     GenericSounds.DISCHARGE_CANNON_CHARGED,
                     SoundCategory.PLAYERS,
                     1f,
@@ -110,7 +110,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         }
 
         stack.set(CHARGE_LEVEL, target);
-        return ActionResult.CONSUME;
+        return TypedActionResult.pass(stack);
     }
 
     @Override

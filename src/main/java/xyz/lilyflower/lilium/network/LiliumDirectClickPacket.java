@@ -8,7 +8,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 import xyz.lilyflower.lilium.network.payload.DirectAttackPayload;
 import xyz.lilyflower.lilium.network.payload.DirectUsePayload;
-import xyz.lilyflower.lilium.util.DirectClickItem;
+import xyz.lilyflower.lilium.util.DirectAttackItem;
+import xyz.lilyflower.lilium.util.DirectUseItem;
 import xyz.lilyflower.lilium.util.LiliumPacket;
 
 
@@ -22,7 +23,7 @@ public class LiliumDirectClickPacket implements LiliumPacket {
             ServerPlayerEntity player = context.player();
             Item item = player.getMainHandStack().getItem();
             ItemCooldownManager manager = player.getItemCooldownManager();
-            if (item instanceof DirectClickItem dci && !manager.isCoolingDown(item) && dci.onDirectAttack(player, Hand.MAIN_HAND).shouldSwingHand()) {
+            if (item instanceof DirectAttackItem dci && !manager.isCoolingDown(item) && dci.onDirectAttack(player, Hand.MAIN_HAND).shouldSwingHand()) {
                 player.swingHand(Hand.MAIN_HAND, true);
             }
         });
@@ -31,7 +32,7 @@ public class LiliumDirectClickPacket implements LiliumPacket {
             ServerPlayerEntity player = context.player();
             Item item = player.getMainHandStack().getItem();
             ItemCooldownManager manager = player.getItemCooldownManager();
-            if (item instanceof DirectClickItem dci && !manager.isCoolingDown(item) && dci.onDirectUse(player, Hand.MAIN_HAND).shouldSwingHand()) {
+            if (item instanceof DirectUseItem dci && !manager.isCoolingDown(item) && dci.onDirectUse(player, Hand.MAIN_HAND).shouldSwingHand()) {
                 player.swingHand(Hand.MAIN_HAND, true);
             }
         });
