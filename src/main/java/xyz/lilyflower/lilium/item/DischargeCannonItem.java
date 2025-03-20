@@ -47,14 +47,15 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         if (player.getWorld().isClient) return ActionResult.SUCCESS;
 
         ItemStack stack = player.getMainHandStack();
+        World world = player.getWorld();
 
         double charge = stack.getOrDefault(CHARGE_LEVEL, 0D);
         if (charge < 0.66F) return ActionResult.FAIL;
         player.getItemCooldownManager().set(this, 30);
 
         stack.set(OVERCHARGE_TICKS, 0);
-        stack.set(CHARGE_LEVEL, 0D);
 
+        ((LiliumTimer) world).lilium$modify_component(30L, CHARGE_LEVEL, 0D, stack);
         player.getWorld().playSound(
                 null,
                 player.getBlockPos(),
@@ -64,12 +65,11 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
                 1f
         );
 
-        World world = player.getWorld();
         ExplosionBehavior behavior = new AdvancedExplosionBehavior(true, false, Optional.of((float) (2.5D * charge)), Optional.empty());
         DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
         double damage = charge >= 1.5D ? 40.0D * (charge - 0.5D) : 20.0D * charge;
 
-        ((LiliumTimer) world).lilium$explosion_player(30L, behavior, player, 4F, false, World.ExplosionSourceType.TRIGGER);
+        ((LiliumTimer) world).lilium$explode_at_player(30L, behavior, player, 4F, false, World.ExplosionSourceType.TRIGGER);
         ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) damage);
 
         return ActionResult.CONSUME;

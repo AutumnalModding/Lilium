@@ -1,9 +1,11 @@
 package xyz.lilyflower.lilium.mixin.timer;
 
+import net.minecraft.component.ComponentType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
@@ -37,6 +39,11 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     @Unique private boolean explosion_fire;
     @Unique private World.ExplosionSourceType explosion_type;
 
+    @Unique private long component_modification_delay;
+    @Unique private ComponentType component_modification_type;
+    @Unique private Object component_modification_value;
+    @Unique private ItemStack component_modification_stack;
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void process(CallbackInfo ci) {
         if (--this.damage_delay == 0L) {
@@ -66,10 +73,14 @@ public abstract class WorldTimerHandler implements LiliumTimer {
             BlockPos pos = (this.explosion_player == null ? this.explosion_location : this.explosion_player.getBlockPos());
             ((World) (Object) this).createExplosion(null, null, this.explosion_behaviour, pos.getX(), pos.getY(), pos.getZ(), this.explosion_power, this.explosion_fire, this.explosion_type);
         }
+
+        if (--this.component_modification_delay == 0L) {
+            this.component_modification_stack.set(this.component_modification_type, this.component_modification_value);
+        }
     }
 
     @Override
-    public void lilium$damage(long delay, LivingEntity target, DamageSource source, float amount) {
+    public void lilium$damage_entity(long delay, LivingEntity target, DamageSource source, float amount) {
         this.damage_delay = delay;
         this.damage_target = target;
         this.damage_type = source;
@@ -87,7 +98,7 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     }
 
     @Override
-    public void lilium$explosion(long delay, ExplosionBehavior behaviour, BlockPos location, float power, boolean fire, World.ExplosionSourceType type) {
+    public void lilium$explode_at_position(long delay, ExplosionBehavior behaviour, BlockPos location, float power, boolean fire, World.ExplosionSourceType type) {
         this.explosion_delay = delay;
         this.explosion_behaviour = behaviour;
         this.explosion_location = location;
@@ -97,12 +108,20 @@ public abstract class WorldTimerHandler implements LiliumTimer {
     }
 
     @Override
-    public void lilium$explosion_player(long delay, ExplosionBehavior behaviour, PlayerEntity player, float power, boolean fire, World.ExplosionSourceType type) {
+    public void lilium$explode_at_player(long delay, ExplosionBehavior behaviour, PlayerEntity player, float power, boolean fire, World.ExplosionSourceType type) {
         this.explosion_delay = delay;
         this.explosion_behaviour = behaviour;
         this.explosion_player = player;
         this.explosion_power = power;
         this.explosion_fire = fire;
         this.explosion_type = type;
+    }
+
+    @Override
+    public void lilium$modify_component(long delay, ComponentType<?> type, Object value, ItemStack stack) {
+        this.component_modification_delay = delay;
+        this.component_modification_type = type;
+        this.component_modification_value = value;
+        this.component_modification_stack = stack;
     }
 }

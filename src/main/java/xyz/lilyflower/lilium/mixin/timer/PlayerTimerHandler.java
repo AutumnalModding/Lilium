@@ -27,7 +27,7 @@ public abstract class PlayerTimerHandler implements LiliumTimer {
     }
 
     @Override
-    public void lilium$cooldown(long delay, int cooldown, Item item) {
+    public void lilium$cooldown_item(long delay, int cooldown, Item item) {
         this.delay = delay;
         this.cooldown = cooldown;
         this.item = item;
