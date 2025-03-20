@@ -55,7 +55,7 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
         stack.set(OVERCHARGE_TICKS, 0);
 
-        //((LiliumTimer) world).lilium$modify_component(30L, CHARGE_LEVEL, 0D, stack);
+        ((LiliumTimer) world).lilium$modify_component(30L, CHARGE_LEVEL, 0D, stack);
         player.getWorld().playSound(
                 null,
                 player.getBlockPos(),
