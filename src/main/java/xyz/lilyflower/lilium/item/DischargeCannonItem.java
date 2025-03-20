@@ -50,6 +50,8 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
         double charge = stack.getOrDefault(CHARGE_LEVEL, 0D);
         if (charge < 0.66F) return ActionResult.FAIL;
+        player.getItemCooldownManager().set(this, 30);
+
         stack.set(OVERCHARGE_TICKS, 0);
         stack.set(CHARGE_LEVEL, 0D);
 
