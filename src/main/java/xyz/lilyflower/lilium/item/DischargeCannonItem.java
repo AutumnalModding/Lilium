@@ -65,9 +65,10 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
         World world = player.getWorld();
         ExplosionBehavior behavior = new AdvancedExplosionBehavior(true, false, Optional.of((float) (2.5D * charge)), Optional.empty());
         DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
+        double damage = charge >= 1.5D ? 40.0D * (charge - 0.5D) : 20.0D * charge;
 
         ((LiliumTimer) world).lilium$explosion_player(30L, behavior, player, 4F, false, World.ExplosionSourceType.TRIGGER);
-        ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) (20.0D * charge));
+        ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) damage);
 
         return ActionResult.CONSUME;
     }
@@ -85,12 +86,14 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
             double coefficient = 0.0825F;
             int ticks = stack.getOrDefault(OVERCHARGE_TICKS, 0);
             stack.set(OVERCHARGE_TICKS, ++ticks);
+
+
             double log = Math.log(ticks == 0 ? 1 : ticks);
             target = 1.0D + (coefficient * log);
             if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
-                Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, 20.0D * target, ticks / 20, ticks);
+                double damage = target >= 1.5D ? 40.0D * (target - 0.5D) : 20.0D * target;
+                Lilium.LOGGER.info("Charge Target {}, Damage {}, Use Time: {} seconds ({} ticks)", target, damage, ticks / 20, ticks);
             }
-
         } else {
             target = charge + 0.001666666666666667F;
         }
