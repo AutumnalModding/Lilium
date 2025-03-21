@@ -1,7 +1,9 @@
 package xyz.lilyflower.lilium.item;
 
 import com.mojang.serialization.Codec;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.component.ComponentType;
 import net.minecraft.entity.Entity;
@@ -9,17 +11,20 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.AdvancedExplosionBehavior;
-import net.minecraft.world.explosion.ExplosionBehavior;
 import xyz.lilyflower.lilium.Lilium;
 import xyz.lilyflower.lilium.util.DirectClickItem;
 import xyz.lilyflower.lilium.util.LiliumTimer;
@@ -40,6 +45,31 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
 
     public DischargeCannonItem() {
         super(new Item.Settings().maxCount(1).rarity(Rarity.EPIC));
+    }
+
+    @SuppressWarnings({"UnusedReturnValue", "deprecation"})
+    public Vec3d raycastParticle(PlayerEntity player, IRailgunRaycast step) {
+        Vec3d vec3d = Vec3d.fromPolar(player.getPitch(), player.getYaw()).normalize();
+        Vec3d raycast = player.getEyePos();
+        int iterations = 0;
+        Set<PlayerEntity> encountered = new HashSet<>();
+        while (!player.getWorld().getBlockState(BlockPos.ofFloored(raycast)).isSolid()) {
+            if (iterations > 384) {
+                break;
+            }
+            raycast = raycast.add(vec3d);
+            double x = raycast.getX();
+            double y = raycast.getY();
+            double z = raycast.getZ();
+            step.step(player.getWorld(), encountered, vec3d, raycast, x, y, z, iterations);
+            iterations++;
+        }
+        return raycast;
+    }
+
+    @FunctionalInterface
+    public interface IRailgunRaycast {
+        void step(World world, Set<PlayerEntity> encountered, Vec3d pitchYaw, Vec3d currentRaycastPosition, double x, double y, double z, int iterations);
     }
 
     @Override
@@ -65,10 +95,25 @@ public class DischargeCannonItem extends Item implements DirectClickItem {
                 1f
         );
 
+        raycastParticle(player, (world1, encountered, pitchYaw, currentRaycastPosition, x, y, z, iterations) -> {
+            if (world1 instanceof ServerWorld serverWorld) {
+                List<ServerPlayerEntity> players = serverWorld.getPlayers();
+                for (ServerPlayerEntity spe : players) {
+                    serverWorld.spawnParticles(spe, ParticleTypes.END_ROD, true, x, y, z, 1, 0, 0, 0, 0);
+//                    if (player.getPos().squaredDistanceTo(currentRaycastPosition) < 25 && !encountered.contains(player)) {
+//                        // don't send a million playSound packets
+////                        player.networkHandler.sendPacket(new PlaySoundFromEntityS2CPacket(registryEntry, this.getSoundCategory(), player, 1.0F, 1.0F, this.getRandom().nextLong()));
+//                        encountered.add(player);
+//                    }
+                }
+            }
+        });
+
         DamageSource source = new DamageSource(player.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Lilium.RAILGUN_DAMAGE_TYPE));
         double damage = charge >= 1.5D ? 40.0D * (charge - 0.5D) : 20.0D * charge;
+        double velocity = (charge >= 1.5F ? 6D * charge : 3D * charge);
 
-        ((LiliumTimer) world).lilium$apply_look_velocity(30L, player, 3D * charge);
+        ((LiliumTimer) world).lilium$apply_look_velocity(30L, player.getControllingVehicle() != null ? player.getControllingVehicle() : player, velocity);
         ((LiliumTimer) world).lilium$damage_raycast(30L, player, 200.0D, source, (float) damage);
 
         return ActionResult.CONSUME;
