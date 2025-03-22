@@ -12,6 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.ExplosionBehavior;
 
+@SuppressWarnings("unused")
 public interface LiliumTimer {
     void lilium$damage_entity(long delay, LivingEntity target, DamageSource source, float amount);
     void lilium$damage_raycast(long delay, PlayerEntity source, double distance, DamageSource type, float amount);
